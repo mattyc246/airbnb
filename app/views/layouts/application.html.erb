@@ -7,7 +7,7 @@
   <%= csrf_meta_tag %>
 </head>
 <body>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light shadow">
   <a class="navbar-brand" href="/">FireBnB</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -31,16 +31,10 @@
     </ul>
     <% end -%>
     <span class="navbar-text">
-      Every booking is guaranteed to be lit!
+      The hottest booking app. Its fire!
     </span>
   </div>
 </nav>
-
-  <div id="flash">
-    <% flash.each do |key, value| -%>
-      <div id="flash_<%= key %>"><%=h value %></div>
-    <% end %>
-  </div>
 
   <%= yield %>
 </body>
