@@ -1,9 +1,29 @@
+<div class="text-field p-1">
+	<%= form.label :first_name %>
+	<%= form.text_field :first_name, placeholder: "Harry", class:"shadow" %>
+</div>
+
 <div class="text-field">
+	<%= form.label :last_name %>
+	<%= form.text_field :last_name, placeholder: "Potter", class:"shadow ml-1" %>
+</div>
+
+<div class="text-field p-1">
+	<%= form.label :contact_no %>
+	<%= form.text_field :contact_number, placeholder: "+60-123456789", class:"shadow" %>
+</div>
+
+<div class="text-field">
+	<%= form.label :birthday %>
+	<%= form.text_field :date_of_birth, placeholder: "DD/MM/YYYY", class:"shadow ml-3" %>
+</div>
+
+<div class="text-field p-1">
   <%= form.label :email %>
-  <%= form.text_field :email, type: 'email' %>
+  <%= form.text_field :email, type: 'email', placeholder: "harry@example.com", class:"shadow ml-4" %>
 </div>
 
 <div class="password-field">
   <%= form.label :password %>
-  <%= form.password_field :password %>
+  <%= form.password_field :password, placeholder:"potter123", class:"shadow" %>
 </div>
