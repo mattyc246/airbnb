@@ -11,6 +11,8 @@
 
   <div class="submit-field align-contents-center">
     <%= form.submit "Submit", class: "btn btn-primary" %>
+    <%= link_to raw("<i class=\"fab fa-google\"> Sign In With Google</i>"), "/auth/google_oauth2", class: "btn btn-success" %>
+
   </div>
 
   <div class="other-links p-3">

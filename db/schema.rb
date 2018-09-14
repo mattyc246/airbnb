@@ -10,10 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_13_114335) do
+ActiveRecord::Schema.define(version: 2018_09_14_095617) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "authentications", force: :cascade do |t|
+    t.string "uid"
+    t.string "token"
+    t.string "provider"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_authentications_on_user_id"
+  end
 
   create_table "listings", force: :cascade do |t|
     t.string "listing_name"
@@ -44,7 +54,6 @@ ActiveRecord::Schema.define(version: 2018_09_13_114335) do
     t.string "email"
     t.string "password"
     t.string "contact_number"
-    t.string "host_status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "encrypted_password", limit: 128
@@ -54,4 +63,5 @@ ActiveRecord::Schema.define(version: 2018_09_13_114335) do
     t.index ["remember_token"], name: "index_users_on_remember_token"
   end
 
+  add_foreign_key "authentications", "users"
 end

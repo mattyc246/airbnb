@@ -70,3 +70,8 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 # Figaro Privacy Protection
 gem 'figaro'
+
+# Gives authorisation to use googles API
+
+gem 'omniauth'
+gem 'omniauth-google-oauth2'
