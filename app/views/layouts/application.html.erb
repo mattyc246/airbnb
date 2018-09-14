@@ -16,7 +16,7 @@
     <ul class="navbar-nav mr-auto">
     <% if signed_in? -%>
       <li class="nav-item">
-        <button class="btn btn-link"><%= button_to t(".sign_out"), sign_out_path, method: :delete %></button>
+        <%= button_to "Sign Out", sign_out_path, method: :delete, class:"btn btn-link text-muted" %>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="#">Features</a>
@@ -28,8 +28,8 @@
       <li class="nav-item">
         <button class="btn btn-link" href="#"><%= link_to t(".sign_in"), sign_in_path %></button>
       </li>
-    </ul>
     <% end -%>
+    </ul>
     <span class="navbar-text">
       The hottest booking app. Its lit!
     </span>
