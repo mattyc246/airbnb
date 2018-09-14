@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <link href="https://fonts.googleapis.com/css?family=Bitter|Oxygen|Rubik" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+
+  <link href="https://fonts.googleapis.com/css?family=Bitter|Oxygen|Rubik|Pacifico" rel="stylesheet">
   <%= javascript_include_tag 'application' %>
   <%= stylesheet_link_tag 'application' %>
   <%= csrf_meta_tag %>
@@ -17,12 +19,6 @@
     <% if signed_in? -%>
       <li class="nav-item">
         <%= button_to "Sign Out", sign_out_path, method: :delete, class:"btn btn-link text-muted" %>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Features</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Pricing</a>
       </li>
     <% else %>
       <li class="nav-item">

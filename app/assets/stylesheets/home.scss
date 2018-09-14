@@ -3,6 +3,20 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 */
 
+@keyframes zoom {
+
+	from {
+		opacity: 0;
+		transform: scale(0);
+	}
+
+	to {
+		opacity: 1;
+		transform: scale(1.5);
+	}
+
+}
+
 body {
 
 	font-family: "Bitter", "Arial", sans-serif;
@@ -12,3 +26,40 @@ body {
   	-o-background-size: cover;
   	background-size: cover;
  }
+
+#welcome-message {
+  
+  font-family: "Pacifico", "Bitter", sans-serif;
+  text-shadow: 2px 2px 5px black;
+  transform: scale(1.5);
+  overflow: hidden;
+  border-right: .15em solid white;
+  white-space: nowrap;
+  margin: 0 auto;
+  letter-spacing: .15em;
+  animation: 
+  typing 3.5s steps(20, end),
+  blink-caret .75s 4;
+}
+
+#welcome-desc {
+  
+  font-family: "Pacifico", "Bitter", sans-serif;
+  text-shadow: 2px 2px 5px black;
+  animation: zoom 3s 1 forwards;
+  animation-delay: 3.5s;
+  transform: scale(1.5);
+  opacity: 0;
+}
+
+
+@keyframes typing {
+  from { width: 0 }
+  to { width: 100% }
+}
+
+
+@keyframes blink-caret {
+  from, to { border-color: transparent }
+  50% { border-color: orange; }
+}
