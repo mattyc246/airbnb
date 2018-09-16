@@ -30,6 +30,7 @@ body {
 #welcome-message {
   
   font-family: "Pacifico", "Bitter", sans-serif;
+  color: orange;
   text-shadow: 2px 2px 5px black;
   transform: scale(1.5);
   overflow: hidden;
@@ -39,12 +40,13 @@ body {
   letter-spacing: .15em;
   animation: 
   typing 3.5s steps(20, end),
-  blink-caret .75s 4;
+  blink-caret .75s 4 forwards;
 }
 
 #welcome-desc {
   
   font-family: "Pacifico", "Bitter", sans-serif;
+  color: orange;
   text-shadow: 2px 2px 5px black;
   animation: zoom 3s 1 forwards;
   animation-delay: 3.5s;
@@ -60,6 +62,6 @@ body {
 
 
 @keyframes blink-caret {
-  from, to { border-color: transparent }
+  from, to { border-color: transparent; }
   50% { border-color: orange; }
 }
