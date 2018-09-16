@@ -1,1 +1,74 @@
 <h1>New Listing</h1>
+
+
+        <%= form_for Listing.create do |form| %>
+        
+          <div class="text-field">
+          	<%= form.label :property_name %>
+          	<%= form.text_field :name, placeholder: "Jesse", class:"shadow" %>
+          </div>
+
+          <div class="text-field">
+          	<%= form.label :type_of_place %><br>
+          	<%= form.select :place_type, [ 'Kolkata','Delhi','Mumbai' ], :prompt => 'Select One' %>
+          </div>
+
+          <div class="text-field">
+          	<%= form.label :property_type %>
+          	<%= form.select :property_type, [''], :prompt => 'Select Property', class:"shadow" %>
+          </div>
+
+          <div class="text-field">
+          	<%= form.label :number_of_rooms %>
+          	<%= form.text_field :room_number, placeholder: " ", class:"shadow ml-3" %>
+          </div>
+
+          <div class="text-field">
+          <%= form.label :number_of_beds %>
+          <%= form.text_field :bed_number, placeholder: " ", class:"shadow ml-4" %>
+          </div>
+
+          <div class="text-field">
+          <%= form.label :country %>
+          <%= form.country_select :country %>
+          </div>
+
+          <div class="text-field">
+          <%= form.label :state %>
+          <%= form.text_field :state %>
+          </div>
+
+          <div class="text-field">
+          <%= form.label :city %>
+          <%= form.text_field :city %>
+          </div>
+
+          <div class="text-field">
+          <%= form.label :zipcode %>
+          <%= form.text_field :zipcode %>
+          </div>
+
+          <div class="text-field">
+          <%= form.label :address %>
+          <%= form.text_field :address %>
+          </div>
+
+          <div class="text-field">
+          <%= form.label :price %>
+          <%= form.text_field :price %>
+          </div>
+
+          <div class="text-field">
+          <%= form.label :description %>
+          <%= form.text_area :description, size:"60x3" %>
+          </div>
+
+          <div class="submit-field">
+            <%= form.submit "Create Listing", class:"btn btn-primary" %>
+          </div>
+
+     	<% end %>
+
+
+
+
