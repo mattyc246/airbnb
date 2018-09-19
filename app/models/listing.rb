@@ -1,5 +1,7 @@
 class Listing < ApplicationRecord
 
+  belongs_to :user
+
 	def self.for_select
 		{
                'Apartment' => ['Apartment','Condominium','Casa Particular','Loft','Serviced Apartment'],
