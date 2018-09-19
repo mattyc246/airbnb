@@ -76,3 +76,7 @@ gem 'figaro'
 
 gem 'omniauth'
 gem 'omniauth-google-oauth2'
+
+# Seeding Fake Details
+
+gem 'faker'

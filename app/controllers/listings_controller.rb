@@ -1,5 +1,8 @@
 class ListingsController < ApplicationController
 	def index
+
+		@listing = Listing.all
+			
 	end
 
 	def new
@@ -9,14 +12,15 @@ class ListingsController < ApplicationController
 
 	end
 
+	def show
+		@listing = Listing.all
+	end
 
 	def create
 
 		@listing = Listing.new(listing_params)
 
 		@listing.user_id = current_user.id
-
-		p @listing
 
 		if @listing.save
 		
