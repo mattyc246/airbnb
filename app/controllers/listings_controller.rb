@@ -39,6 +39,8 @@ class ListingsController < ApplicationController
 		byebug
 
 		listing = Listing.find(params[:id])
+
+		listing.
 	end
 
 	private
