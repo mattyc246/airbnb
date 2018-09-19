@@ -13,7 +13,9 @@ class ListingsController < ApplicationController
 	end
 
 	def show
-		@listing = Listing.all
+		p params
+		@listing = Listing.find(params[:id])
+		
 	end
 
 	def create

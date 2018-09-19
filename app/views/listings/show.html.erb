@@ -1,0 +1,32 @@
+
+
+	<div class="card" style="width: 100;">
+		<img class="card-img-top" src="/assets/interior.jpg" alt="Card image cap">
+		<div class="card-img-overlay h-25">
+    		<h2 class="card-title"><%= @listing.name %></h2>
+    	</div>
+    	<nav id="info-bar" class="nav justify-content-center nav-fill m-3">
+    	  <p id="info-icon" class="nav-item"><i class="fas fa-user"></i> Guests: <%= @listing.guest_number %></p>
+    	  <p id="info-icon" class="nav-item"><i class="fas fa-door-closed"></i> Rooms: <%= @listing.room_number %></p>
+    	  <p id="info-icon" class="nav-item"><i class="fas fa-bed"></i> Beds: <%= @listing.bed_number %></p>
+    	  <p id="info-icon" class="nav-item"><i class="fas fa-money-bill-alt"></i> Price: <%= number_to_currency(@listing.price, unit: '$') %> Per Night</p>
+    	</nav>
+	  <div class="card-body">
+	    <h5 class="card-title">Description</h5>
+	    <p class="card-text"><%= @listing.description %></p>
+	    <a href="#" class="btn btn-primary">Go somewhere</a>
+	  </div>
+	</div>
+
+	<script>
+
+		$("#info-bar").mouseenter(function(){
+			$("#info-bar").addClass('font-weight-bold')
+		})
+
+		$("#info-bar").mouseleave(function(){
+			$("#info-bar").removeClass('font-weight-bold')
+		})
+
+
+	</script>
