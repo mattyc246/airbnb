@@ -1,6 +1,5 @@
 class ListingsController < ApplicationController
 	def index
-		render template: 'listings/index'
 	end
 
 	def new
@@ -10,9 +9,28 @@ class ListingsController < ApplicationController
 
 	end
 
+
 	def create
 
 		@listing = Listing.new(listing_params)
+
+		@listing.user_id = current_user.id
+
+		p @listing
+
+		if @listing.save
+		
+
+			redirect_to '/'
+
+		else
+
+		end
+
+	end
+
+	def update
+
 	end
 
 	private

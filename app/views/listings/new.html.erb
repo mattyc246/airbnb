@@ -1,21 +1,13 @@
 <h1>New Listing</h1>
-
-
-        <%= form_for Listing.create do |form| %>
-        
+     
+    
+        <%= form_for @listing do |form| %>
+          <%= form.label :property_type %>
+          <%= form.select :property_type, grouped_options_for_select(Listing.for_select) %>
+          <%= form.hidden_field :place_type, id:"place-type" %>
           <div class="text-field">
-          	<%= form.label :property_name %>
-          	<%= form.text_field :name, placeholder: "Jesse", class:"shadow" %>
-          </div>
-
-          <div class="text-field">
-          	<%= form.label :type_of_place %><br>
-          	<%= form.select :place_type, [ 'Kolkata','Delhi','Mumbai' ], :prompt => 'Select One' %>
-          </div>
-
-          <div class="text-field">
-          	<%= form.label :property_type %>
-          	<%= form.select :property_type, [''], :prompt => 'Select Property', class:"shadow" %>
+               <%= form.label :property_name %>
+               <%= form.text_field :name, placeholder: "Jesse", class:"shadow" %>
           </div>
 
           <div class="text-field">
@@ -26,6 +18,11 @@
           <div class="text-field">
           <%= form.label :number_of_beds %>
           <%= form.text_field :bed_number, placeholder: " ", class:"shadow ml-4" %>
+          </div>
+
+          <div class="text-field">
+          <%= form.label :number_of_guests %>
+          <%= form.text_field :guest_number, placeholder: " ", class:"shadow ml-4" %>
           </div>
 
           <div class="text-field">
@@ -69,6 +66,15 @@
 
      	<% end %>
 
+<script>
 
+     $('#listing_property_type').change(function(){
+
+         var selected = $(':selected', this);
+         $('#place-type')[0].value = selected.parent().attr('label');
+     });
+
+
+</script>
 
 

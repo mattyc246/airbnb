@@ -5,7 +5,7 @@ class CreateListings < ActiveRecord::Migration[5.2]
 		create_table :listings do |t|
 
 			t.string :name
-			t.integer :place_type
+			t.string :place_type
 			t.string :property_type
 			t.integer :room_number
 			t.integer :bed_number
@@ -17,7 +17,6 @@ class CreateListings < ActiveRecord::Migration[5.2]
 			t.string :address
 			t.decimal :price
 			t.string :description
-			t.string :location
 			t.belongs_to :user
 			t.timestamps
 
