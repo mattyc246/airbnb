@@ -1,6 +1,6 @@
 
 
-	<div class="card" style="width: 100;">
+	<div class="card text-center" style="width: 100;">
 		<img class="card-img-top" src="/assets/interior.jpg" alt="Card image cap">
 		<div class="card-img-overlay h-25">
     		<h2 class="card-title"><%= @listing.name %></h2>
@@ -11,6 +11,19 @@
     	  <p id="info-icon" class="nav-item"><i class="fas fa-bed"></i> Beds: <%= @listing.bed_number %></p>
     	  <p id="info-icon" class="nav-item"><i class="fas fa-money-bill-alt"></i> Price: <%= number_to_currency(@listing.price, unit: '$') %> Per Night</p>
     	</nav>
+      <div class="card-body">
+        <h5 class="card-title">Host</h5>
+        <p class="card-text"><%= @listing.user.first_name %> <%= @listing.user.last_name %></p>
+        <p id="contact-number" class="card-text"></p>
+        <button id="show-number" class="btn btn-success">Show Contact No.</button>
+      </div>
+      <div class="card-body">
+        <h5 class="card-title">Address</h5>
+        <p class="card-text"><%= @listing.address %></p>
+        <p class="card-text"><%= @listing.city %></p>
+        <p class="card-text"><%= @listing.state %>, <%= @listing.zipcode %></p>
+        <p class="card-text"><%= @listing.country %></p>
+      </div>
 	  <div class="card-body">
 	    <h5 class="card-title">Description</h5>
 	    <p class="card-text"><%= @listing.description %></p>
@@ -28,5 +41,9 @@
 			$("#info-bar").removeClass('font-weight-bold')
 		})
 
+		$("#show-number").click(function(){
+			$("#contact-number").html("<%= @listing.user.contact_number %>")
+			$("#show-number").hide()
+		})
 
 	</script>
