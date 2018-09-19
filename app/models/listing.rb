@@ -2,6 +2,15 @@ class Listing < ApplicationRecord
 
   belongs_to :user
 
+  def self.for_update
+    
+    {
+      'Name' => 'listing[name]',
+      'Country' => 'listing[country]'
+    }
+
+  end 
+
 	def self.for_select
 		{
                'Apartment' => ['Apartment','Condominium','Casa Particular','Loft','Serviced Apartment'],

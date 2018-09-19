@@ -27,11 +27,51 @@
 	  <div class="card-body">
 	    <h5 class="card-title">Description</h5>
 	    <p class="card-text"><%= @listing.description %></p>
-	    <a href="#" class="btn btn-primary">Go somewhere</a>
+		<button type="button" id="edit-button" class="btn btn-warning">
+		  Edit Listing
+		</button>
+	  </div>
+	</div>
+
+	<!-- Button trigger modal -->
+
+	<!-- Modal -->
+	<div class="modal fade" id="choose-attr" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h5 class="modal-title" id="exampleModalLabel">Edit Listing</h5>
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          <span aria-hidden="true">&times;</span>
+	        </button>
+	      </div>
+	      <div class="modal-body">
+	        <h6>What would you like to edit?</h6>
+	        <%= form_for :listing, url: update_listing_path, method: (:patch) do |form| %>
+	        <%= form.label :attribute, id:"attr-label"  %>
+	        <%= form.select :name, options_for_select(Listing.for_update) %>
+	        <%= form.text_field :name, id:"new-value", placeholder:'Enter new details...' %>
+
+	      </div>
+	      <div class="modal-footer">
+	        <%= form.submit 'Make Changes!', class:'btn btn-success' %>
+	        <% end %>
+	      </div>
+	    </div>
 	  </div>
 	</div>
 
 	<script>
+
+		$('#listing_name').change(function(){
+
+		    var selected = $(':selected', this);
+		    $("#new-value")[0].attributes[4].nodeValue = selected.attr('value');
+		    $("#attr-label").text(selected[0].innerHTML);
+		    $("#listing_name").fadeOut().remove();
+		    console.log(selected[0].innerHTML)
+
+		});
 
 		$("#info-bar").mouseenter(function(){
 			$("#info-bar").addClass('font-weight-bold')
@@ -42,8 +82,13 @@
 		})
 
 		$("#show-number").click(function(){
-			$("#contact-number").html("<%= @listing.user.contact_number %>")
-			$("#show-number").hide()
+			$("#show-number").fadeOut()
+			$("#contact-number").hide().html("<%= @listing.user.contact_number %>").fadeIn()
+		})
+
+		$("#edit-button").click(function(){
+			$('#choose-attr').modal()
+
 		})
 
 	</script>

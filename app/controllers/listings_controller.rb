@@ -13,7 +13,7 @@ class ListingsController < ApplicationController
 	end
 
 	def show
-		p params
+		
 		@listing = Listing.find(params[:id])
 		
 	end
@@ -36,7 +36,9 @@ class ListingsController < ApplicationController
 	end
 
 	def update
+		byebug
 
+		listing = Listing.find(params[:id])
 	end
 
 	private

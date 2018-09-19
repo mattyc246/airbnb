@@ -14,7 +14,7 @@ Rails.application.routes.draw do
 
   resources :listings
 
-
+  patch "/listings/:id" => "listings#update", as: "update_listing"
 
 
 
