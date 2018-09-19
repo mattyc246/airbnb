@@ -1,7 +1,7 @@
 
 <section class="container mt-4">
 	<ul class="d-flex flex-wrap justify-content-center">
-		<% @listing.each_with_index do |l,i| %>
+		<% @listing.each do |l| %>
 			<li class="list-inline-item">
 				<div class="card m-2 text-center shadow-lg" style="width: 18rem;">
 				  <img class="card-img-top" src="/assets/download.svg" alt="Card image cap">
@@ -18,7 +18,7 @@
 				    <li class="list-group-item text-center"><i class="fas fa-bed"></i> Beds: <%= l.bed_number %></li>
 				  </ul>
 				  <div class="card-body text-center">
-				    <a href="#" class="card-link">View Listing</a>
+				    <a href="/listings/<%= l.id %>" class="card-link">View Listing</a>
 				    <a href="#" class="card-link">Book Now</a>
 				  </div>
 				</div>
