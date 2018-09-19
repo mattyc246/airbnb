@@ -36,18 +36,34 @@ class ListingsController < ApplicationController
 	end
 
 	def update
-		byebug
 
 		listing = Listing.find(params[:id])
 
-		listing.
+	
+
+		
+
+		if listing.update(listing_params)
+
+			flash[:notice] = 'Successfull!'
+			redirect_to action: "show", id: params[:id]
+
+
+		else
+
+			flash[:notice] = 'Unsuccessful!'
+			redirect_to action: "show", id: params[:id]
+
+
+		end
+
 	end
 
 	private
 
 	def listing_params
 
-		params.require(:listing).permit(:name, :place_type, :property_type, :room_number, :bed_number, :guest_number, :country, :state, :city, :zipcode, :address, :price, :description, :user_id)
+		params.require(:listing).permit(:name, :place_type, :property_type, :room_number, :bed_number, :guest_number, :country, :state, :city, :zipcode, :address, :price, :description, :user_id, :listing)
 
 	end
 end

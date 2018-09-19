@@ -33,10 +33,8 @@
 	  </div>
 	</div>
 
-	<!-- Button trigger modal -->
 
-	<!-- Modal -->
-	<div class="modal fade" id="choose-attr" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal fade text-center" id="choose-attr" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 	  <div class="modal-dialog" role="document">
 	    <div class="modal-content">
 	      <div class="modal-header">
@@ -49,7 +47,7 @@
 	        <h6>What would you like to edit?</h6>
 	        <%= form_for :listing, url: update_listing_path, method: (:patch) do |form| %>
 	        <%= form.label :attribute, id:"attr-label"  %>
-	        <%= form.select :name, options_for_select(Listing.for_update) %>
+	        <%= form.select :name, options_for_select(Listing.for_update), prompt: "Please Select One", include_blank: true %></br>
 	        <%= form.text_field :name, id:"new-value", placeholder:'Enter new details...' %>
 
 	      </div>

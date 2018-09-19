@@ -6,7 +6,19 @@ class Listing < ApplicationRecord
     
     {
       'Name' => 'listing[name]',
-      'Country' => 'listing[country]'
+      'Place Type' => 'listing[place_type]',
+      'Property Type' => 'listing[property_type]',
+      'Number Of Rooms' => 'listing[room_number]',
+      'Number Of Beds' => 'listing[bed_number]',
+      'Number Of Guests' => 'listing[guest_number]',
+      'Country' => 'listing[country]',
+      'State' => 'listing[state]',
+      'City' => 'listing[city]',
+      'Zipcode' => 'listing[zipcode]',
+      'Address' => 'listing[address]',
+      'Price' => 'listing[price]',
+      'Description' => 'listing[description]'
+
     }
 
   end 
