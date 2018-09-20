@@ -59,19 +59,19 @@ class ListingsController < ApplicationController
 
 	end
 
-	def delete
+	def destroy
 
 		listing = Listing.find(params[:id])
 
 		if listing.destroy
 
 			flash[:notice] = 'Listing removed succesfully!'
-			redirect_to action: "show", id: params[:id]		
+			redirect_to action: "index"	
 
 		else
 
 			flash[:notice] = 'Unable to delete listing!'
-			redirect_to action: "show", id: params[:id]
+			redirect_to action: "index"
 
 		end
 
