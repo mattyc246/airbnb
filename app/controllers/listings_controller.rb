@@ -45,7 +45,7 @@ class ListingsController < ApplicationController
 
 		if listing.update(listing_params)
 
-			flash[:notice] = 'Successfull!'
+			flash[:notice] = 'Successful!'
 			redirect_to action: "show", id: params[:id]
 
 

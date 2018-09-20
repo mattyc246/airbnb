@@ -30,6 +30,9 @@
 		<button type="button" id="edit-button" class="btn btn-warning">
 		  Edit Listing
 		</button>
+		<button type="button" id="delete-button" class="btn btn-danger">
+		  Remove Listing
+		</button>
 	  </div>
 	</div>
 
@@ -67,7 +70,6 @@
 		    $("#new-value")[0].attributes[4].nodeValue = selected.attr('value');
 		    $("#attr-label").text(selected[0].innerHTML);
 		    $("#listing_name").fadeOut().remove();
-		    console.log(selected[0].innerHTML)
 
 		});
 
@@ -88,5 +90,7 @@
 			$('#choose-attr').modal()
 
 		})
+
+		$(".alert").delay(1000).fadeOut('slow')
 
 	</script>
