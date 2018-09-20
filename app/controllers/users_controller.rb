@@ -9,10 +9,21 @@ class UsersController < ApplicationController
 		@user = User.find(params[:id])
 	end
 
-	def edit
+	def update
 
-		redirect_to '/'
+		user = User.find(params[:id])
 
+		if user.update(user_params)
+
+			flash[:notice] = "Successfully Updated #{user.first_name}!"
+			redirect_to action: "show", id: params[:id]
+
+		else
+
+			flash[:notice] = 'Unsuccessful! Invalid Change!'
+			redirect_to action: "show", id: params[:id]
+
+		end
 	end
 
 	private

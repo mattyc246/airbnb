@@ -16,23 +16,23 @@
       </li>
       <li class="list-group-item">
         <strong>First Name:</strong> <%= @user.first_name %>
-        <button id ="edit-first-name" class="btn btn-warning float-right" data-toggle="modal" data-target="#editModal">Edit</button>
+        <button id ="first-name" class="edit-button btn btn-warning float-right">Edit</button>
       </li>
       <li class="list-group-item">
         <strong>Last Name:</strong> <%= @user.last_name %>
-        <button id ="edit-last-name" class="btn btn-warning float-right" data-toggle="modal" data-target="#editModal">Edit</button>
+        <button id ="last-name" class="edit-button btn btn-warning float-right">Edit</button>
       </li>
       <li class="list-group-item">
         <strong>Birthday:</strong> <%= @user.date_of_birth %>
-        <button id ="edit-birthday" class="btn btn-warning float-right" data-toggle="modal" data-target="#editModal">Edit</button>
+        <button id ="birthday" class="edit-button btn btn-warning float-right">Edit</button>
       </li>
       <li class="list-group-item">
         <strong>Contact Number:</strong> <%= @user.contact_number %>
-        <button id ="edit-contact-number" class="btn btn-warning float-right" data-toggle="modal" data-target="#editModal">Edit</button>
+        <button id ="contact-number" class="edit-button btn btn-warning float-right">Edit</button>
       </li>
       <li class="list-group-item">
         <strong>Email Address:</strong> <%= @user.email %>
-        <button id ="edit-email" class="btn btn-warning float-right" data-toggle="modal" data-target="#editModal">Edit</button>
+        <button id ="email" class="edit-button btn btn-warning float-right">Edit</button>
       </li>
     </ul>
   </div>
@@ -52,36 +52,35 @@
 
         <%= form_for :user, method: (:patch) do |form| %>
 
-          <div id="first-name" class="text-field p-1 d-none">
+          <div id="first-name-field" class="text-field p-1 d-none">
             <%= form.label :first_name %>
             <%= form.text_field :first_name, placeholder: "Jesse", class:"shadow" %>
           </div>
 
-          <div id="last-name" class="text-field p-1 d-none">
+          <div id="last-name-field" class="text-field p-1 d-none">
             <%= form.label :last_name %>
             <%= form.text_field :last_name, placeholder: "James", class:"shadow ml-1" %>
           </div>
 
-          <div id="contact-number" class="text-field p-1 d-none">
+          <div id="contact-number-field" class="text-field p-1 d-none">
             <%= form.label :contact_no %>
             <%= form.text_field :contact_number, placeholder: "+60-123456789", class:"shadow" %>
           </div>
 
-          <div id="birthday" class="text-field p-1 d-none">
+          <div id="birthday-field" class="text-field p-1 d-none">
             <%= form.label :birthday %>
             <%= form.text_field :date_of_birth, placeholder: "DD/MM/YYYY", class:"shadow ml-3" %>
           </div>
 
-          <div id="email" class="text-field p-1 d-none">
+          <div id="email-field" class="text-field p-1 d-none">
             <%= form.label :email %>
             <%= form.text_field :email, type: 'email', placeholder: "jesse@example.com", class:"shadow ml-4" %>
           </div>
 
-        <% end %>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+          <%= form.submit 'Save Changes', class:'btn btn-success' %>
+        <% end %>
       </div>
     </div>
   </div>
@@ -90,5 +89,29 @@
 
 <script>
 
+  $(".close").click(function(){
+    $(".text-field").addClass("d-none");
+  })
+
+  $(".edit-button").click(function(event){
+
+    if (event.target.id == 'first-name'){
+      $('#editModal').modal()
+      $('#first-name-field').removeClass("d-none");
+    } else if (event.target.id == 'last-name'){
+      $('#editModal').modal()
+      $('#last-name-field').removeClass("d-none");
+    } else if (event.target.id == 'birthday') {
+      $('#editModal').modal()
+      $('#birthday-field').removeClass("d-none");
+    } else if (event.target.id == 'contact-number') {
+      $('#editModal').modal()
+      $('#contact-number-field').removeClass("d-none");
+    } else if (event.target.id == 'email') {
+      $('#editModal').modal()
+      $('#email-field').removeClass("d-none");
+    };
+
+  })
 
 </script>
