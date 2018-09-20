@@ -34,8 +34,12 @@
         <strong>Email Address:</strong> <%= @user.email %>
         <button id ="email" class="edit-button btn btn-warning float-right">Edit</button>
       </li>
+      <li class="list-group-item">
+        <button type="button" class="btn btn-danger w-100" data-toggle="modal" data-target="#deleteModal">
+          Delete Account
+        </button>
+       </li>
     </ul>
-    <li class="list-group-item"><button class="btn btn-danger w-100">Delete Account</button></li>
   </div>
 </div>
 
@@ -87,6 +91,26 @@
   </div>
 </div>
 
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title text-danger" id="exampleModalLabel">Warning!!!</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <h2 class="text-danger">Are you sure you wish to delete your account?</h2>
+        <h5 class="text-danger">All related listings & posts will be removed from the site and are no longer retrievable!</h5>
+      </div>
+      <div class="modal-footer">
+        <%= button_to "Yes", user_path, method: (:delete), class:"btn btn-danger" %>
+        <button class="btn btn-success" data-dismiss="modal">No</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 <script>
 
