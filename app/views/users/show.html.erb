@@ -16,24 +16,79 @@
       </li>
       <li class="list-group-item">
         <strong>First Name:</strong> <%= @user.first_name %>
-        <button class="btn btn-warning float-right">Edit</button>
+        <button id ="edit-first-name" class="btn btn-warning float-right" data-toggle="modal" data-target="#editModal">Edit</button>
       </li>
       <li class="list-group-item">
         <strong>Last Name:</strong> <%= @user.last_name %>
-        <button class="btn btn-warning float-right">Edit</button>
+        <button id ="edit-last-name" class="btn btn-warning float-right" data-toggle="modal" data-target="#editModal">Edit</button>
       </li>
       <li class="list-group-item">
         <strong>Birthday:</strong> <%= @user.date_of_birth %>
-        <button class="btn btn-warning float-right">Edit</button>
+        <button id ="edit-birthday" class="btn btn-warning float-right" data-toggle="modal" data-target="#editModal">Edit</button>
       </li>
       <li class="list-group-item">
         <strong>Contact Number:</strong> <%= @user.contact_number %>
-        <button class="btn btn-warning float-right">Edit</button>
+        <button id ="edit-contact-number" class="btn btn-warning float-right" data-toggle="modal" data-target="#editModal">Edit</button>
       </li>
       <li class="list-group-item">
         <strong>Email Address:</strong> <%= @user.email %>
-        <button class="btn btn-warning float-right">Edit</button>
+        <button id ="edit-email" class="btn btn-warning float-right" data-toggle="modal" data-target="#editModal">Edit</button>
       </li>
     </ul>
   </div>
 </div>
+
+
+<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalCenterTitle">Edit <%= @user.first_name %></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body text-center">
+
+        <%= form_for :user, method: (:patch) do |form| %>
+
+          <div id="first-name" class="text-field p-1 d-none">
+            <%= form.label :first_name %>
+            <%= form.text_field :first_name, placeholder: "Jesse", class:"shadow" %>
+          </div>
+
+          <div id="last-name" class="text-field p-1 d-none">
+            <%= form.label :last_name %>
+            <%= form.text_field :last_name, placeholder: "James", class:"shadow ml-1" %>
+          </div>
+
+          <div id="contact-number" class="text-field p-1 d-none">
+            <%= form.label :contact_no %>
+            <%= form.text_field :contact_number, placeholder: "+60-123456789", class:"shadow" %>
+          </div>
+
+          <div id="birthday" class="text-field p-1 d-none">
+            <%= form.label :birthday %>
+            <%= form.text_field :date_of_birth, placeholder: "DD/MM/YYYY", class:"shadow ml-3" %>
+          </div>
+
+          <div id="email" class="text-field p-1 d-none">
+            <%= form.label :email %>
+            <%= form.text_field :email, type: 'email', placeholder: "jesse@example.com", class:"shadow ml-4" %>
+          </div>
+
+        <% end %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script>
+
+
+</script>
