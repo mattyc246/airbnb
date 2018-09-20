@@ -20,7 +20,7 @@ class ListingsController < ApplicationController
 
 	def create
 
-		@listing = Listing.new(listing_params)
+		@listing = Listing.new(listing_params, verified: false)
 
 		@listing.user_id = current_user.id
 

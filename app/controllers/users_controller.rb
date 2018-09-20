@@ -32,6 +32,23 @@ class UsersController < ApplicationController
 		end
 	end
 
+	def destroy
+
+		user = User.find(params[:id])
+
+		if user.destroy
+
+			flash[:notice] = "Thank you! We're sorry you had to go!"
+			redirect_to '/'
+
+		else
+
+			flash[:notice] = "Error! Unable to delete account. Try again later."
+			redirect_to action: "show", id: params[:id]
+
+		end
+	end
+
 	private
 
 	def user_params

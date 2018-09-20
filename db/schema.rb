@@ -39,6 +39,7 @@ ActiveRecord::Schema.define(version: 2018_09_14_083057) do
     t.string "address"
     t.decimal "price"
     t.string "description"
+    t.boolean "verified"
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
