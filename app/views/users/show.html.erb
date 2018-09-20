@@ -2,7 +2,7 @@
   <div class="card-body text-center">
     <img class="card-img-top w-25 rounded-circle mx-auto d-block" src="/assets/profile.jpg" alt="Card image cap">
     <h1 class="card-text m-2 p-1"><%= @user.first_name %>'s Profile</h1>
-    <h5 class="card-title">Account Type:</h5>
+    <h5 class="card-title">Account Type: <%= @user.auth_level %></h5>
   </div>
   <ul class="list-group list-group-flush text-center">
     <li class="list-group-item bg-secondary text-white">Member Since: <%= @user.created_at.year %></li>

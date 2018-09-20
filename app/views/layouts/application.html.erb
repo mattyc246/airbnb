@@ -26,6 +26,9 @@
         <li class="nav-item dropleft ml-auto">
           <a class="nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><%= current_user.first_name %></a>
           <div class="dropdown-menu">
+            <% if current_user.auth_level == "superadmin"%>
+              <a href="/users" class="dropdown-item">Management</a>
+            <% end %>
             <a href="/users/<%= current_user.id %>" class="dropdown-item">View Profile</a>
             <a class="dropdown-item" href="#">Nothing</a>
             <a class="dropdown-item" href="#">Nothing</a>

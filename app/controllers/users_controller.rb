@@ -1,5 +1,11 @@
 class UsersController < ApplicationController
 
+	def index
+
+		@user = User.all.page params[:page]
+
+	end
+
 	def create
 		@user = User.create(user_params)
 		redirect_to '/'
@@ -29,7 +35,7 @@ class UsersController < ApplicationController
 	private
 
 	def user_params
-		params.require(:user).permit(:first_name, :last_name, :contact_number, :date_of_birth, :email, :password)
+		params.require(:user).permit(:first_name, :last_name, :contact_number, :date_of_birth, :email, :password, :auth_level)
 	end
 
 end
