@@ -11,11 +11,29 @@
   </ul>
   <div class="card-body container">
     <ul class="list-group list-group-flush text-left">
-      <li class="list-group-item">First Name: <%= @user.first_name %></li>
-      <li class="list-group-item">Last Name: <%= @user.last_name %></li>
-      <li class="list-group-item">Birthday: <%= @user.date_of_birth %></li>
-      <li class="list-group-item">Contact Number: <%= @user.contact_number %></li>
-      <li class="list-group-item">Email Address: <%= @user.email %></li>
+      <li class="list-group-item text-center">
+        <h3>Personal Details:</h3>
+      </li>
+      <li class="list-group-item">
+        <strong>First Name:</strong> <%= @user.first_name %>
+        <button class="btn btn-warning float-right">Edit</button>
+      </li>
+      <li class="list-group-item">
+        <strong>Last Name:</strong> <%= @user.last_name %>
+        <button class="btn btn-warning float-right">Edit</button>
+      </li>
+      <li class="list-group-item">
+        <strong>Birthday:</strong> <%= @user.date_of_birth %>
+        <button class="btn btn-warning float-right">Edit</button>
+      </li>
+      <li class="list-group-item">
+        <strong>Contact Number:</strong> <%= @user.contact_number %>
+        <button class="btn btn-warning float-right">Edit</button>
+      </li>
+      <li class="list-group-item">
+        <strong>Email Address:</strong> <%= @user.email %>
+        <button class="btn btn-warning float-right">Edit</button>
+      </li>
     </ul>
   </div>
 </div>
