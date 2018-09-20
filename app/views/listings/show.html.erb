@@ -62,6 +62,24 @@
 	  </div>
 	</div>
 
+	<div class="modal fade text-center" id="delete-confirm" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h5 class="modal-title" id="exampleModalLabel">Remove Listing</h5>
+	      </div>
+	      <div class="modal-body">
+	        <h4 class="text-danger">Are you sure you wish to remove the listing?</h4>
+	        <h6 class="text-danger">This cannot be reversed!</h6>
+
+	      </div>
+	      <div class="modal-footer justify-content-center">
+	      	<button class="btn btn-success">Yes</button>
+	      	<button class="btn btn-danger" data-dismiss="modal">No</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
 	<script>
 
 		$('#listing_name').change(function(){
@@ -91,6 +109,9 @@
 
 		})
 
-		$(".alert").delay(1000).fadeOut('slow')
+		$("#delete-button").click(function(){
+			$('#delete-confirm').modal()
+
+		})
 
 	</script>
