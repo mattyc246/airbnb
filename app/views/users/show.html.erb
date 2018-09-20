@@ -1,19 +1,21 @@
 <div class="card" style="width: 100;">
   <div class="card-body text-center">
     <img class="card-img-top w-25 rounded-circle mx-auto d-block" src="/assets/profile.jpg" alt="Card image cap">
-    <h1 class="card-text m-2 p-1">Some quick example text to build on the card title and make up the bulk of the card's content.</h1>
+    <h1 class="card-text m-2 p-1"><%= @user.first_name %>'s Profile</h1>
+    <h5 class="card-title">Account Type:</h5>
   </div>
-  <div class="card-body">
-    <h5 class="card-title">Card title</h5>
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-  </div>
-  <ul class="list-group list-group-flush">
-    <li class="list-group-item">Cras justo odio</li>
-    <li class="list-group-item">Dapibus ac facilisis in</li>
-    <li class="list-group-item">Vestibulum at eros</li>
+  <ul class="list-group list-group-flush text-center">
+    <li class="list-group-item bg-secondary text-white">Member Since: <%= @user.created_at.year %></li>
+    <li class="list-group-item">Listings: <%= @user.listings.count %></li>
+    <li class="list-group-item bg-secondary text-white">Bookings Made:</li>
   </ul>
-  <div class="card-body">
-    <a href="#" class="card-link">Card link</a>
-    <a href="#" class="card-link">Another link</a>
+  <div class="card-body container">
+    <ul class="list-group list-group-flush text-left">
+      <li class="list-group-item">First Name: <%= @user.first_name %></li>
+      <li class="list-group-item">Last Name: <%= @user.last_name %></li>
+      <li class="list-group-item">Birthday: <%= @user.date_of_birth %></li>
+      <li class="list-group-item">Contact Number: <%= @user.contact_number %></li>
+      <li class="list-group-item">Email Address: <%= @user.email %></li>
+    </ul>
   </div>
 </div>
