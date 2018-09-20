@@ -26,10 +26,20 @@ ActiveRecord::Schema.define(version: 2018_09_14_095617) do
   end
 
   create_table "listings", force: :cascade do |t|
-    t.string "listing_name"
-    t.string "location"
+    t.string "name"
+    t.string "place_type"
+    t.string "property_type"
+    t.integer "room_number"
+    t.integer "bed_number"
+    t.integer "guest_number"
+    t.string "country"
+    t.string "state"
+    t.string "city"
+    t.string "zipcode"
+    t.string "address"
+    t.decimal "price"
+    t.string "description"
     t.bigint "user_id"
-    t.text "feature"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_listings_on_user_id"

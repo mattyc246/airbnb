@@ -1,5 +1,5 @@
-<section class="container mt-4 text-center">
-	<h2 class="text-dark">Latest Places:</h2>
+
+<section class="container mt-4">
 	<ul class="d-flex flex-wrap justify-content-center">
 		<% @listing.each do |l| %>
 			<li class="list-inline-item">
@@ -18,10 +18,13 @@
 				    <li class="list-group-item text-center"><i class="fas fa-bed"></i> Beds: <%= l.bed_number %></li>
 				  </ul>
 				  <div class="card-body text-center">
-				    <a href="#" class="card-link">View Listing</a>
+				    <a href="/listings/<%= l.id %>" class="card-link">View Listing</a>
 				    <a href="#" class="card-link">Book Now</a>
 				  </div>
 				</div>
 			</li>
 		<% end %>
 	</ul>
+
+</section>
+

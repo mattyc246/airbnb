@@ -1,0 +1,117 @@
+
+
+	<div class="card text-center" style="width: 100;">
+		<img class="card-img-top" src="/assets/interior.jpg" alt="Card image cap">
+		<div class="card-img-overlay h-25">
+    		<h2 class="card-title"><%= @listing.name %></h2>
+    	</div>
+    	<nav id="info-bar" class="nav justify-content-center nav-fill m-3">
+    	  <p id="info-icon" class="nav-item"><i class="fas fa-user"></i> Guests: <%= @listing.guest_number %></p>
+    	  <p id="info-icon" class="nav-item"><i class="fas fa-door-closed"></i> Rooms: <%= @listing.room_number %></p>
+    	  <p id="info-icon" class="nav-item"><i class="fas fa-bed"></i> Beds: <%= @listing.bed_number %></p>
+    	  <p id="info-icon" class="nav-item"><i class="fas fa-money-bill-alt"></i> Price: <%= number_to_currency(@listing.price, unit: '$') %> Per Night</p>
+    	</nav>
+      <div class="card-body">
+        <h5 class="card-title">Host</h5>
+        <p class="card-text"><%= @listing.user.first_name %> <%= @listing.user.last_name %></p>
+        <p id="contact-number" class="card-text"></p>
+        <button id="show-number" class="btn btn-success">Show Contact No.</button>
+      </div>
+      <div class="card-body">
+        <h5 class="card-title">Address</h5>
+        <p class="card-text"><%= @listing.address %></p>
+        <p class="card-text"><%= @listing.city %></p>
+        <p class="card-text"><%= @listing.state %>, <%= @listing.zipcode %></p>
+        <p class="card-text"><%= @listing.country %></p>
+      </div>
+	  <div class="card-body">
+	    <h5 class="card-title">Description</h5>
+	    <p class="card-text"><%= @listing.description %></p>
+		<button type="button" id="edit-button" class="btn btn-warning">
+		  Edit Listing
+		</button>
+		<button type="button" id="delete-button" class="btn btn-danger">
+		  Remove Listing
+		</button>
+	  </div>
+	</div>
+
+
+	<div class="modal fade text-center" id="choose-attr" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h5 class="modal-title" id="exampleModalLabel">Edit Listing</h5>
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          <span aria-hidden="true">&times;</span>
+	        </button>
+	      </div>
+	      <div class="modal-body">
+	        <h6>What would you like to edit?</h6>
+	        <%= form_for :listing, url: update_listing_path, method: (:patch) do |form| %>
+	        <%= form.label :attribute, id:"attr-label"  %>
+	        <%= form.select :name, options_for_select(Listing.for_update), prompt: "Please Select One", include_blank: true %></br>
+	        <%= form.text_field :name, id:"new-value", placeholder:'Enter new details...' %>
+
+	      </div>
+	      <div class="modal-footer">
+	        <%= form.submit 'Make Changes!', class:'btn btn-success' %>
+	        <% end %>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+
+	<div class="modal fade text-center" id="delete-confirm" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h5 class="modal-title" id="exampleModalLabel">Remove Listing</h5>
+	      </div>
+	      <div class="modal-body">
+	        <h4 class="text-danger">Are you sure you wish to remove the listing?</h4>
+	        <h6 class="text-danger">This cannot be reversed!</h6>
+
+	      </div>
+	      <div class="modal-footer justify-content-center">
+	      	<%= button_to "Yes", listing_path, method: (:delete), class:"btn btn-danger" %>
+	      	<button class="btn btn-success" data-dismiss="modal">No</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+	<script>
+
+		$('#listing_name').change(function(){
+
+		    var selected = $(':selected', this);
+		    $("#new-value")[0].attributes[4].nodeValue = selected.attr('value');
+		    $("#attr-label").text(selected[0].innerHTML);
+		    $("#listing_name").fadeOut().remove();
+
+		});
+
+		$("#info-bar").mouseenter(function(){
+			$("#info-bar").addClass('font-weight-bold')
+		})
+
+		$("#info-bar").mouseleave(function(){
+			$("#info-bar").removeClass('font-weight-bold')
+		})
+
+		$("#show-number").click(function(){
+			$("#show-number").fadeOut()
+			$("#contact-number").hide().html("<%= @listing.user.contact_number %>").fadeIn()
+		})
+
+		$("#edit-button").click(function(){
+			$('#choose-attr').modal()
+
+		})
+
+		$("#delete-button").click(function(){
+			$('#delete-confirm').modal()
+
+		})
+
+	</script>
