@@ -1,6 +1,7 @@
 class Listing < ApplicationRecord
 
   belongs_to :user
+  paginates_per 10
 
   def self.for_update
     

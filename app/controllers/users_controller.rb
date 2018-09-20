@@ -5,10 +5,25 @@ class UsersController < ApplicationController
 		redirect_to '/'
 	end
 
-	def edit
+	def show
+		@user = User.find(params[:id])
+	end
 
-		redirect_to '/'
+	def update
 
+		user = User.find(params[:id])
+
+		if user.update(user_params)
+
+			flash[:notice] = "Successfully Updated #{user.first_name}!"
+			redirect_to action: "show", id: params[:id]
+
+		else
+
+			flash[:notice] = 'Unsuccessful! Invalid Change!'
+			redirect_to action: "show", id: params[:id]
+
+		end
 	end
 
 	private

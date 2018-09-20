@@ -38,6 +38,9 @@ gem 'country_select', '~> 3.1'
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
 
+# Add Pagination to Listings
+gem 'kaminari'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 

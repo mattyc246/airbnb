@@ -1,0 +1,142 @@
+<div class="card" style="width: 100;">
+  <div class="card-body text-center">
+    <img class="card-img-top w-25 rounded-circle mx-auto d-block" src="/assets/profile.jpg" alt="Card image cap">
+    <h1 class="card-text m-2 p-1"><%= @user.first_name %>'s Profile</h1>
+    <h5 class="card-title">Account Type:</h5>
+  </div>
+  <ul class="list-group list-group-flush text-center">
+    <li class="list-group-item bg-secondary text-white">Member Since: <%= @user.created_at.year %></li>
+    <li class="list-group-item">Listings: <%= @user.listings.count %></li>
+    <li class="list-group-item bg-secondary text-white">Bookings Made:</li>
+  </ul>
+  <div class="card-body container">
+    <ul class="list-group list-group-flush text-left">
+      <li class="list-group-item text-center">
+        <h3>Personal Details:</h3>
+      </li>
+      <li class="list-group-item">
+        <strong>First Name:</strong> <%= @user.first_name %>
+        <button id ="first-name" class="edit-button btn btn-warning float-right">Edit</button>
+      </li>
+      <li class="list-group-item">
+        <strong>Last Name:</strong> <%= @user.last_name %>
+        <button id ="last-name" class="edit-button btn btn-warning float-right">Edit</button>
+      </li>
+      <li class="list-group-item">
+        <strong>Birthday:</strong> <%= @user.date_of_birth %>
+        <button id ="birthday" class="edit-button btn btn-warning float-right">Edit</button>
+      </li>
+      <li class="list-group-item">
+        <strong>Contact Number:</strong> <%= @user.contact_number %>
+        <button id ="contact-number" class="edit-button btn btn-warning float-right">Edit</button>
+      </li>
+      <li class="list-group-item">
+        <strong>Email Address:</strong> <%= @user.email %>
+        <button id ="email" class="edit-button btn btn-warning float-right">Edit</button>
+      </li>
+      <li class="list-group-item">
+        <button type="button" class="btn btn-danger w-100" data-toggle="modal" data-target="#deleteModal">
+          Delete Account
+        </button>
+       </li>
+    </ul>
+  </div>
+</div>
+
+
+<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalCenterTitle">Edit <%= @user.first_name %></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body text-center">
+
+        <%= form_for :user, method: (:patch) do |form| %>
+
+          <div id="first-name-field" class="text-field p-1 d-none">
+            <%= form.label :first_name %>
+            <%= form.text_field :first_name, placeholder: "Jesse", class:"shadow" %>
+          </div>
+
+          <div id="last-name-field" class="text-field p-1 d-none">
+            <%= form.label :last_name %>
+            <%= form.text_field :last_name, placeholder: "James", class:"shadow ml-1" %>
+          </div>
+
+          <div id="contact-number-field" class="text-field p-1 d-none">
+            <%= form.label :contact_no %>
+            <%= form.text_field :contact_number, placeholder: "+60-123456789", class:"shadow" %>
+          </div>
+
+          <div id="birthday-field" class="text-field p-1 d-none">
+            <%= form.label :birthday %>
+            <%= form.text_field :date_of_birth, placeholder: "DD/MM/YYYY", class:"shadow ml-3" %>
+          </div>
+
+          <div id="email-field" class="text-field p-1 d-none">
+            <%= form.label :email %>
+            <%= form.text_field :email, type: 'email', placeholder: "jesse@example.com", class:"shadow ml-4" %>
+          </div>
+
+      </div>
+      <div class="modal-footer">
+          <%= form.submit 'Save Changes', class:'btn btn-success' %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title text-danger" id="exampleModalLabel">Warning!!!</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <h2 class="text-danger">Are you sure you wish to delete your account?</h2>
+        <h5 class="text-danger">All related listings & posts will be removed from the site and are no longer retrievable!</h5>
+      </div>
+      <div class="modal-footer">
+        <%= button_to "Yes", user_path, method: (:delete), class:"btn btn-danger" %>
+        <button class="btn btn-success" data-dismiss="modal">No</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+
+  $(".close").click(function(){
+    $(".text-field").addClass("d-none");
+  })
+
+  $(".edit-button").click(function(event){
+
+    if (event.target.id == 'first-name'){
+      $('#editModal').modal()
+      $('#first-name-field').removeClass("d-none");
+    } else if (event.target.id == 'last-name'){
+      $('#editModal').modal()
+      $('#last-name-field').removeClass("d-none");
+    } else if (event.target.id == 'birthday') {
+      $('#editModal').modal()
+      $('#birthday-field').removeClass("d-none");
+    } else if (event.target.id == 'contact-number') {
+      $('#editModal').modal()
+      $('#contact-number-field').removeClass("d-none");
+    } else if (event.target.id == 'email') {
+      $('#editModal').modal()
+      $('#email-field').removeClass("d-none");
+    };
+
+  })
+
+</script>
