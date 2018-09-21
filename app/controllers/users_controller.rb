@@ -13,6 +13,7 @@ class UsersController < ApplicationController
 
 	def show
 		@user = User.find(params[:id])
+		@listing = @user.listings.all.page params[:page]
 	end
 
 	def update
