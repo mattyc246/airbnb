@@ -15,7 +15,7 @@ ActiveRecord::Base.transaction do
     user['email'] = Faker::Internet.email
     user['contact_number'] = Faker::PhoneNumber.phone_number
     user['date_of_birth'] = Faker::Date.between(50.years.ago, Date.today)
-    user['auth_level'] = 'basic'
+    user['auth_level'] = ['basic','host'].sample
 
     User.create(user)
   end
