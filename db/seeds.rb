@@ -24,7 +24,7 @@ end
 # Seed Listings
 listing = {}
 uids = []
-User.all.each { |u| uids << u.id }
+User.where(auth_level: "host").each { |u| uids << u.id }
 
 ActiveRecord::Base.transaction do
   40.times do 
@@ -59,7 +59,9 @@ ActiveRecord::Base.transaction do
     listing['description'] = Faker::Hipster.sentence
     listing['verified'] = false
 
+    
     listing['user_id'] = uids.sample
+    
 
     Listing.create(listing)
   end
