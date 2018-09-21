@@ -76,7 +76,7 @@ class ListingsController < ApplicationController
 		end
 
 	end
-
+	
 	private
 
 	def listing_params
