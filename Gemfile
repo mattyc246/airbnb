@@ -83,3 +83,7 @@ gem 'omniauth-google-oauth2'
 # Seeding Fake Details
 
 gem 'faker'
+
+# Bootstrap form gem
+
+gem "bootstrap_form", ">= 4.0.0.alpha1"

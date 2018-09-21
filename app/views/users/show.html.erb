@@ -100,7 +100,7 @@
 
 
 <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
+  <div class="modal-dialog modal-dialog-centered modal-md" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalCenterTitle">Edit <%= @user.first_name %></h5>
@@ -110,30 +110,25 @@
       </div>
       <div class="modal-body text-center">
 
-        <%= form_for :user, method: (:patch) do |form| %>
+        <%= bootstrap_form_for :user, method: (:patch) do |form| %>
 
           <div id="first-name-field" class="text-field p-1 d-none">
-            <%= form.label :first_name %>
             <%= form.text_field :first_name, placeholder: "Jesse", class:"shadow" %>
           </div>
 
           <div id="last-name-field" class="text-field p-1 d-none">
-            <%= form.label :last_name %>
             <%= form.text_field :last_name, placeholder: "James", class:"shadow ml-1" %>
           </div>
 
           <div id="contact-number-field" class="text-field p-1 d-none">
-            <%= form.label :contact_no %>
             <%= form.text_field :contact_number, placeholder: "+60-123456789", class:"shadow" %>
           </div>
 
           <div id="birthday-field" class="text-field p-1 d-none">
-            <%= form.label :birthday %>
             <%= form.text_field :date_of_birth, placeholder: "DD/MM/YYYY", class:"shadow ml-3" %>
           </div>
 
           <div id="email-field" class="text-field p-1 d-none">
-            <%= form.label :email %>
             <%= form.text_field :email, type: 'email', placeholder: "jesse@example.com", class:"shadow ml-4" %>
           </div>
 
