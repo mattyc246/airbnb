@@ -38,12 +38,18 @@
 	  <div class="card-body">
 	    <h5 class="card-title">Description</h5>
 	    <p class="card-text"><%= @listing.description %></p>
+
+	    <% if current_user.id == @listing.id || current_user.auth_level == "superadmin" %>
+
 		<button type="button" id="edit-button" class="btn btn-warning">
 		  Edit Listing
 		</button>
 		<button type="button" id="delete-button" class="btn btn-danger">
 		  Remove Listing
 		</button>
+
+		<% end %>
+
 	  </div>
 	</div>
 

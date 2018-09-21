@@ -2,12 +2,21 @@ class UsersController < ApplicationController
 
 	def index
 
-		@user = User.all.page params[:page]
+		if current_user.auth_level == "superadmin"
+
+			@user = User.all.page params[:page]
+
+		else
+
+			flash[:notice] = "Unauthorised Access!"
+			redirect_to '/'
+
+		end
 
 	end
 
 	def create
-		@user = User.create(user_params)
+		@user = User.create(user_params, auth_level: "basic")
 		redirect_to '/'
 	end
 

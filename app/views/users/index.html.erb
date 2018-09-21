@@ -1,5 +1,4 @@
 <section class="container">
-<% if current_user.auth_level == "superadmin"%>
 	
 	<table class="table table-striped table-dark border rounded shadow mt-3">
 	  <thead>
@@ -35,12 +34,6 @@
 	</table>
 
 		
-<% else %>
-
-
-
-
-<% end %>
 
 	
 		<%= paginate @user %>
