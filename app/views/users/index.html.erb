@@ -25,7 +25,7 @@
 	      <td><%= u.contact_number %></td>
 	      <td><%= u.auth_level %></td>
 	      <%= form_for u, method: (:patch) do |form| %>
-	      <td><%= form.select :auth_level, options_for_select(["superadmin","moderator","basic"]), include_blank: true %></td>
+	      <td><%= form.select :auth_level, options_for_select(["superadmin","moderator","host","basic"]), include_blank: true %></td>
 	      <td><%= form.submit "Apply", class: 'btn btn-primary'  %></td>
 	      <% end %>
 	    </tr>

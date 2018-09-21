@@ -20,9 +20,11 @@
         <li class="nav-item">
           <a href="/listings" class="btn btn-link text-body">View Listings</a>
         </li>
+        <% if current_user.auth_level == "host" || current_user.auth_level == "superadmin" %>
         <li class="nav-item">
           <a href="/listings/new" class="btn btn-link text-body">Be A  Host</a>
         </li>
+        <% end %>
         <li class="nav-item dropleft ml-auto">
           <a class="nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><%= current_user.first_name %></a>
           <div class="dropdown-menu">
