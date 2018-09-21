@@ -2,7 +2,16 @@ class UsersController < ApplicationController
 
 	def index
 
-		@user = User.all.page params[:page]
+		if current_user.auth_level == "superadmin"
+
+			@user = User.all.page params[:page]
+
+		else
+
+			flash[:notice] = "Unauthorised Access!"
+			redirect_to '/'
+
+		end
 
 	end
 
@@ -13,40 +22,61 @@ class UsersController < ApplicationController
 
 	def show
 		@user = User.find(params[:id])
+		@listing = @user.listings.all.page params[:page]
 	end
 
 	def update
 
 		user = User.find(params[:id])
 
-		if user.update(user_params)
+		if current_user.id == user.id || current_user.auth_level == "superadmin"
 
-			flash[:notice] = "Successfully Updated #{user.first_name}!"
-			redirect_to action: "show", id: params[:id]
+			if user.update(user_params)
+
+				flash[:notice] = "Successfully Updated #{user.first_name}!"
+				redirect_to action: "show", id: params[:id]
+
+			else
+
+				flash[:notice] = 'Unsuccessful! Invalid Change!'
+				redirect_to action: "show", id: params[:id]
+
+			end
 
 		else
 
-			flash[:notice] = 'Unsuccessful! Invalid Change!'
-			redirect_to action: "show", id: params[:id]
+			flash[:notice] = "You are not Authorized to do this!"
+			redirect_back(fallback_location: root_path)
 
 		end
+
 	end
 
 	def destroy
 
 		user = User.find(params[:id])
 
-		if user.destroy
+		if current_user.id == user.id || current_user.auth_level == "superadmin"
 
-			flash[:notice] = "Thank you! We're sorry you had to go!"
-			redirect_to '/'
+			if user.destroy
+
+				flash[:notice] = "Thank you! We're sorry you had to go!"
+				redirect_to '/'
+
+			else
+
+				flash[:notice] = "Error! Unable to delete account. Try again later."
+				redirect_to action: "show", id: params[:id]
+
+			end
 
 		else
 
-			flash[:notice] = "Error! Unable to delete account. Try again later."
-			redirect_to action: "show", id: params[:id]
+			flash[:notice] = "You are not Authorized to do this!"
+			redirect_back(fallback_location: root_path)
 
 		end
+
 	end
 
 	private

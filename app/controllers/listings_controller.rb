@@ -7,6 +7,7 @@ class ListingsController < ApplicationController
 
 	def new
 
+
 		@listing = Listing.new
 		
 
@@ -24,12 +25,24 @@ class ListingsController < ApplicationController
 
 		@listing.user_id = current_user.id
 
-		if @listing.save
-		
+		if current_user.auth_level == "host"
 
-			redirect_to '/'
+			if @listing.save
+			
+				flash[:notice] = "Successfully Hosted Listing!"
+				redirect_to '/listings/<%= @listing.id %>'
+
+			else
+
+				flash[:notice] = "Unsuccessful, if problems persist, please report!"
+				redirect_to '/listings/new'
+
+			end
 
 		else
+
+			flash[:notice] = "Please request for host status to create listing!"
+			redirect_to(fallback_location: root_path)
 
 		end
 
@@ -40,20 +53,27 @@ class ListingsController < ApplicationController
 		listing = Listing.find(params[:id])
 
 	
-
+		if current_user.id == listing.user.id || current_user.auth_level == "superadmin"
 		
 
-		if listing.update(listing_params)
+			if listing.update(listing_params)
 
-			flash[:notice] = 'Successful!'
-			redirect_to action: "show", id: params[:id]
+				flash[:notice] = 'Successful!'
+				redirect_to action: "show", id: params[:id]
 
+
+			else
+
+				flash[:notice] = 'Unsuccessful!'
+				redirect_to action: "show", id: params[:id]
+
+
+			end
 
 		else
 
-			flash[:notice] = 'Unsuccessful!'
-			redirect_to action: "show", id: params[:id]
-
+			flash[:notice] = 'Please contact administrator to change this listing!'
+			redirect_to(fallback_location: root_path)
 
 		end
 
@@ -63,15 +83,24 @@ class ListingsController < ApplicationController
 
 		listing = Listing.find(params[:id])
 
-		if listing.destroy
+		if current_user.id == listing.user.id || current_user.auth_level == "superadmin"
 
-			flash[:notice] = 'Listing removed succesfully!'
-			redirect_to action: "index"	
+			if listing.destroy
+
+				flash[:notice] = 'Listing removed succesfully!'
+				redirect_to action: "index"	
+
+			else
+
+				flash[:notice] = 'Unable to delete listing!'
+				redirect_to action: "index"
+
+			end
 
 		else
 
-			flash[:notice] = 'Unable to delete listing!'
-			redirect_to action: "index"
+			flash[:notice] = "You are not authorized to remove this listing!"
+			redirect_to(fallback_location: root_path)
 
 		end
 

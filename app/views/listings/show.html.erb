@@ -8,7 +8,7 @@
     	<nav id="info-bar" class="nav justify-content-center nav-fill m-3">
     	  <div id="verified-status">
     	  <% if @listing.verified == false %>
-    	  	<% if current_user.auth_level != "basic" %>
+    	  	<% if current_user.auth_level == "moderator" %>
     	  		<button id="verify" class="btn btn-success text-white"><i class="fas fa-check-circle"></i> Verify</button> 
     	  	<% else %>
     	  		<p id="info-icon" class="nav-item"><i class="fas fa-times-circle"></i> Unverified</p>
@@ -38,12 +38,18 @@
 	  <div class="card-body">
 	    <h5 class="card-title">Description</h5>
 	    <p class="card-text"><%= @listing.description %></p>
+
+	    <% if current_user.id == @listing.id || current_user.auth_level == "superadmin" %>
+
 		<button type="button" id="edit-button" class="btn btn-warning">
 		  Edit Listing
 		</button>
 		<button type="button" id="delete-button" class="btn btn-danger">
 		  Remove Listing
 		</button>
+
+		<% end %>
+
 	  </div>
 	</div>
 

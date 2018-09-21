@@ -8,9 +8,7 @@
 					  <div class="card-body">
 					    <h5 class="card-title"><%= l.name %></h5>
 					    <p class="text-muted"><%= l.place_type %></p>
-					    <p class="card-text"><%= l.description %></p>
 					    <h6 class="text-muted text-center"><%= number_to_currency(l.price, unit: '$') %> Per Night</h6>
-					    <p class="text-muted text-center"> Host: <%= l.user.first_name %> <%= l.user.last_name %></p>
 					  </div>
 					  <ul class="list-group list-group-flush">
 					  	<% if l.verified == true %>
@@ -18,9 +16,11 @@
 					  	<% else %>
 					  	<li class="list-group-item text-center"><i class="fas fa-times-circle"></i> Unverified</li>
 					  	<% end %>
-					    <li class="list-group-item text-center"><i class="fas fa-door-closed"></i> Rooms: <%= l.room_number %></li>
-					    <li class="list-group-item text-center"><i class="fas fa-user"></i> Guests: <%= l.guest_number %></li>
-					    <li class="list-group-item text-center"><i class="fas fa-bed"></i> Beds: <%= l.bed_number %></li>
+					    <li class="list-group-item text-center">
+					    	<i class="fas fa-door-closed"></i> <%= l.room_number %> | 
+					    	<i class="fas fa-user"></i> <%= l.guest_number %> | 
+					    	<i class="fas fa-bed"></i> <%= l.bed_number %>
+					    </li>
 					  </ul>
 					  <div class="card-body text-center">
 					    <a href="/listings/<%= l.id %>" class="card-link">View Listing</a>

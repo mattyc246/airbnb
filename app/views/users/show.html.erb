@@ -16,32 +16,87 @@
       </li>
       <li class="list-group-item">
         <strong>First Name:</strong> <%= @user.first_name %>
+        <% if current_user.id == @user.id || current_user.auth_level == "superadmin" %>
         <button id ="first-name" class="edit-button btn btn-warning float-right">Edit</button>
+        <% end %>
       </li>
       <li class="list-group-item">
         <strong>Last Name:</strong> <%= @user.last_name %>
+        <% if current_user.id == @user.id || current_user.auth_level == "superadmin" %>
         <button id ="last-name" class="edit-button btn btn-warning float-right">Edit</button>
+        <% end %>
       </li>
       <li class="list-group-item">
         <strong>Birthday:</strong> <%= @user.date_of_birth %>
+        <% if current_user.id == @user.id || current_user.auth_level == "superadmin" %>
         <button id ="birthday" class="edit-button btn btn-warning float-right">Edit</button>
+        <% end %>
       </li>
       <li class="list-group-item">
         <strong>Contact Number:</strong> <%= @user.contact_number %>
+        <% if current_user.id == @user.id || current_user.auth_level == "superadmin" %>
         <button id ="contact-number" class="edit-button btn btn-warning float-right">Edit</button>
+        <% end %>
       </li>
       <li class="list-group-item">
         <strong>Email Address:</strong> <%= @user.email %>
+        <% if current_user.id == @user.id || current_user.auth_level == "superadmin" %>
         <button id ="email" class="edit-button btn btn-warning float-right">Edit</button>
+        <% end %>
       </li>
       <li class="list-group-item">
+        <% if current_user.id == @user.id || current_user.auth_level == "superadmin" %>
         <button type="button" class="btn btn-danger w-100" data-toggle="modal" data-target="#deleteModal">
           Delete Account
         </button>
+        <% end %>
        </li>
     </ul>
   </div>
 </div>
+
+<% if @user.auth_level == "basic" %>
+
+
+<% else %>
+
+  <section class="container-fluid p-3 bg-dark">
+    <h3 class="text-center text-white">Listings:</h3>
+    <ul class="d-flex flex-wrap justify-content-center">
+        <% @listing.each do |l| %>
+          <li class="list-inline-item">
+            <div class="card m-2 text-center shadow-lg" style="width: 18rem;">
+              <img class="card-img-top" src="/assets/download.svg" alt="Card image cap">
+              <div class="card-body">
+                <h5 class="card-title"><%= l.name %></h5>
+                <p class="text-muted"><%= l.place_type %></p>
+                <h6 class="text-muted text-center"><%= number_to_currency(l.price, unit: '$') %> Per Night</h6>
+              </div>
+              <ul class="list-group list-group-flush">
+                <% if l.verified == true %>
+                <li class="list-group-item text-center text-success"><i class="fas fa-check-circle"></i> Verified</li>
+                <% else %>
+                <li class="list-group-item text-center"><i class="fas fa-times-circle"></i> Unverified</li>
+                <% end %>
+                <li class="list-group-item text-center">
+                  <i class="fas fa-door-closed"></i> <%= l.room_number %> | 
+                  <i class="fas fa-user"></i> <%= l.guest_number %> | 
+                  <i class="fas fa-bed"></i> <%= l.bed_number %>
+                </li>
+              </ul>
+              <div class="card-body text-center">
+                <a href="/listings/<%= l.id %>" class="btn btn-danger" data-confirm="Are you sure you want to remove listing?" data-method="delete">Delete</a>
+              </div>
+            </div>
+          </li>
+        <% end %>
+        
+      
+    </ul>
+        <%= paginate @listing %>
+
+  </section>
+<% end %>
 
 
 <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -113,6 +168,8 @@
 </div>
 
 <script>
+
+  $()
 
   $(".close").click(function(){
     $(".text-field").addClass("d-none");

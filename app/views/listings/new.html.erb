@@ -1,70 +1,71 @@
-<h1>New Listing</h1>
+
+<section class="container-fluid bg-secondary text-center p-4">
+
+  <h1 class="text-white">New Listing</h1>
+
+     <table class="table-sm mx-auto m-3 bg-light rounded w-50 table-borderless table-striped">
+     <%= form_for @listing do |form| %>
+
+       <tbody>
+           <%= form.hidden_field :place_type, id:"place-type" %>
+         <tr>
+           <td class="text-right p-2"><%= form.label :property_name %></td>
+           <td class="text-center p-2"><%= form.text_field :name, placeholder: "Casa Castle"%></td>
+         </tr>
+         <tr>
+           <td class="text-right p-2"><%= form.label :property_type %></td>
+           <td class="text-center p-2"><%= form.select :property_type, grouped_options_for_select(Listing.for_select) %></td>
+         </tr>
+         <tr>
+           <td class="text-right p-2"><%= form.label :number_of_rooms %></td>
+           <td class="text-center p-2"><%= form.text_field :room_number, placeholder: "3"%></td>
+         </tr>
+         <tr>
+           <td class="text-right p-2"><%= form.label :number_of_beds %></td>
+           <td class="text-center p-2"><%= form.text_field :bed_number, placeholder: "4"%></td>
+         </tr>
+         <tr>
+           <td class="text-right p-2"><%= form.label :number_of_guests %></td>
+           <td class="text-center p-2"><%= form.text_field :guest_number, placeholder: "12"%></td>
+         </tr>
+         <tr>
+           <td class="text-right p-2"><%= form.label :country %></td>
+           <td class="text-center p-2"><%= form.country_select :country %></td>
+         </tr>
+         <tr>
+           <td class="text-right p-2"><%= form.label :state %></td>
+           <td class="text-center p-2"><%= form.text_field :state, placeholder: "City Of London" %></td>
+         </tr>
+         <tr>
+           <td class="text-right p-2"><%= form.label :city %></td>
+           <td class="text-center p-2"><%= form.text_field :city, placeholder: "London" %></td>
+         </tr>
+         <tr>
+           <td class="text-right p-2"><%= form.label :zipcode %></td>
+           <td class="text-center p-2"><%= form.text_field :zipcode, placeholder: "12345" %></td>
+         </tr>
+         <tr>
+           <td class="text-right p-2"><%= form.label :address %></td>
+           <td class="text-center p-2"><%= form.text_field :address, placeholder: "123 Avenue Road" %></td>
+         </tr>
+         <tr>
+           <td class="text-right p-2"><%= form.label :price %></td>
+           <td class="text-center p-2"><%= form.text_field :price, placeholder: "USD per night" %></td>
+         </tr>
+         <tr>
+           <td class="text-right p-2"><%= form.label :description %></td>
+           <td class="text-center p-2"><%= form.text_area :description, size:"40x3", placeholder: "Tell us about your place..." %></td>
+         </tr>
+       </tbody>
+     </table>
+
+     <%= form.submit "Create Listing", class:"btn btn-primary m-3" %>
+
+     <% end %>
+
+</section>
      
-    
-        <%= form_for @listing do |form| %>
-          <%= form.label :property_type %>
-          <%= form.select :property_type, grouped_options_for_select(Listing.for_select) %>
-          <%= form.hidden_field :place_type, id:"place-type" %>
-          <div class="text-field">
-               <%= form.label :property_name %>
-               <%= form.text_field :name, placeholder: "Jesse", class:"shadow" %>
-          </div>
 
-          <div class="text-field">
-          	<%= form.label :number_of_rooms %>
-          	<%= form.text_field :room_number, placeholder: " ", class:"shadow ml-3" %>
-          </div>
-
-          <div class="text-field">
-          <%= form.label :number_of_beds %>
-          <%= form.text_field :bed_number, placeholder: " ", class:"shadow ml-4" %>
-          </div>
-
-          <div class="text-field">
-          <%= form.label :number_of_guests %>
-          <%= form.text_field :guest_number, placeholder: " ", class:"shadow ml-4" %>
-          </div>
-
-          <div class="text-field">
-          <%= form.label :country %>
-          <%= form.country_select :country %>
-          </div>
-
-          <div class="text-field">
-          <%= form.label :state %>
-          <%= form.text_field :state %>
-          </div>
-
-          <div class="text-field">
-          <%= form.label :city %>
-          <%= form.text_field :city %>
-          </div>
-
-          <div class="text-field">
-          <%= form.label :zipcode %>
-          <%= form.text_field :zipcode %>
-          </div>
-
-          <div class="text-field">
-          <%= form.label :address %>
-          <%= form.text_field :address %>
-          </div>
-
-          <div class="text-field">
-          <%= form.label :price %>
-          <%= form.text_field :price %>
-          </div>
-
-          <div class="text-field">
-          <%= form.label :description %>
-          <%= form.text_area :description, size:"60x3" %>
-          </div>
-
-          <div class="submit-field">
-            <%= form.submit "Create Listing", class:"btn btn-primary" %>
-          </div>
-
-     	<% end %>
 
 <script>
 
