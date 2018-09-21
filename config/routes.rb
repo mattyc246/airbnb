@@ -12,7 +12,11 @@ Rails.application.routes.draw do
       only: [:create, :edit, :update]
   end
 
-  resources :listings
+  # post '/listings/:id/verify' => "listings#verify", as: "verify_listing"
+
+  resources :listings do
+    resource :verify, only: [:create, :update]
+  end
 
   patch "/listings/:id" => "listings#update", as: "update_listing"
 

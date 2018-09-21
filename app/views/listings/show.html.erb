@@ -6,6 +6,17 @@
     		<h2 class="card-title"><%= @listing.name %></h2>
     	</div>
     	<nav id="info-bar" class="nav justify-content-center nav-fill m-3">
+    	  <div id="verified-status">
+    	  <% if @listing.verified == false %>
+    	  	<% if current_user.auth_level != "basic" %>
+    	  		<button id="verify" class="btn btn-success text-white"><i class="fas fa-check-circle"></i> Verify</button> 
+    	  	<% else %>
+    	  		<p id="info-icon" class="nav-item"><i class="fas fa-times-circle"></i> Unverified</p>
+    	  	<% end %>
+    	  <% else %>
+    	  	<p id="info-icon" class="nav-item text-success"><i class="fas fa-check-circle"></i> Verified</p>
+    	  <% end %>
+    	  </div>
     	  <p id="info-icon" class="nav-item"><i class="fas fa-user"></i> Guests: <%= @listing.guest_number %></p>
     	  <p id="info-icon" class="nav-item"><i class="fas fa-door-closed"></i> Rooms: <%= @listing.room_number %></p>
     	  <p id="info-icon" class="nav-item"><i class="fas fa-bed"></i> Beds: <%= @listing.bed_number %></p>
@@ -112,6 +123,26 @@
 		$("#delete-button").click(function(){
 			$('#delete-confirm').modal()
 
+		})
+
+		$("#verify").click(function(){
+		  	event.preventDefault();
+
+			$.ajax({
+			  method: "POST",
+			  url: "/listings/<%= @listing.id %>/verify",
+			  data: {verified: true},
+			  success: function(data){
+
+			  	if (data == "true"){
+			  	 	var content = '<p id="info-icon" class="nav-item text-success"><i class="fas fa-check-circle"></i> Verified</p>'
+
+			  	 	$("#verify").fadeOut('slow').remove();
+			  		$("#verified-status").fadeIn('slow').html(content);
+			  	}
+
+			  }
+			})
 		})
 
 	</script>

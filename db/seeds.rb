@@ -15,6 +15,7 @@ ActiveRecord::Base.transaction do
     user['email'] = Faker::Internet.email
     user['contact_number'] = Faker::PhoneNumber.phone_number
     user['date_of_birth'] = Faker::Date.between(50.years.ago, Date.today)
+    user['auth_level'] = 'basic'
 
     User.create(user)
   end
@@ -56,6 +57,7 @@ ActiveRecord::Base.transaction do
 
     listing['price'] = rand(80..500)
     listing['description'] = Faker::Hipster.sentence
+    listing['verified'] = false
 
     listing['user_id'] = uids.sample
 

@@ -10,7 +10,7 @@ class CreateUsers < ActiveRecord::Migration[5.2]
 			t.string :email
 			t.string :password
 			t.string :contact_number
-			t.string :host_status
+			t.string :auth_level
 			t.timestamps
 
 		end

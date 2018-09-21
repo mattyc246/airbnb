@@ -17,6 +17,7 @@ class CreateListings < ActiveRecord::Migration[5.2]
 			t.string :address
 			t.decimal :price
 			t.string :description
+			t.boolean :verified
 			t.belongs_to :user
 			t.timestamps
 

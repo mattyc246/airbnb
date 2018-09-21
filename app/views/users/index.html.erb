@@ -1,0 +1,48 @@
+<section class="container">
+<% if current_user.auth_level == "superadmin"%>
+	
+	<table class="table table-striped table-dark border rounded shadow mt-3">
+	  <thead>
+	    <tr>
+	      <th scope="col">ID#</th>
+	      <th scope="col">First Name</th>
+	      <th scope="col">Last Name</th>
+	      <th scope="col">D.O.B</th>
+	      <th scope="col">Email Address</th>
+	      <th scope="col">Contact Number</th>
+	      <th scope="col">Auth Level</th>
+	      <th scope="col">Update Auth</th>
+	      <th scope="col"></th>
+	    </tr>
+	  </thead>
+	  <tbody>
+	  	<% @user.each do |u| %>
+	    <tr>
+	      <td><%= u.id %></td>
+	      <td><%= u.first_name %></td>
+	      <td><%= u.last_name %></td>
+	      <td><%= u.date_of_birth %></td>
+	      <td><%= u.email %></td>
+	      <td><%= u.contact_number %></td>
+	      <td><%= u.auth_level %></td>
+	      <%= form_for u, method: (:patch) do |form| %>
+	      <td><%= form.select :auth_level, options_for_select(["superadmin","moderator","basic"]), include_blank: true %></td>
+	      <td><%= form.submit "Apply", class: 'btn btn-primary'  %></td>
+	      <% end %>
+	    </tr>
+	    <% end %>
+	  </tbody>
+	</table>
+
+		
+<% else %>
+
+
+
+
+<% end %>
+
+	
+		<%= paginate @user %>
+
+</section>
