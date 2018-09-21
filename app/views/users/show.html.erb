@@ -16,28 +16,40 @@
       </li>
       <li class="list-group-item">
         <strong>First Name:</strong> <%= @user.first_name %>
+        <% if current_user.id == @user.id || current_user.auth_level == "superadmin" %>
         <button id ="first-name" class="edit-button btn btn-warning float-right">Edit</button>
+        <% end %>
       </li>
       <li class="list-group-item">
         <strong>Last Name:</strong> <%= @user.last_name %>
+        <% if current_user.id == @user.id || current_user.auth_level == "superadmin" %>
         <button id ="last-name" class="edit-button btn btn-warning float-right">Edit</button>
+        <% end %>
       </li>
       <li class="list-group-item">
         <strong>Birthday:</strong> <%= @user.date_of_birth %>
+        <% if current_user.id == @user.id || current_user.auth_level == "superadmin" %>
         <button id ="birthday" class="edit-button btn btn-warning float-right">Edit</button>
+        <% end %>
       </li>
       <li class="list-group-item">
         <strong>Contact Number:</strong> <%= @user.contact_number %>
+        <% if current_user.id == @user.id || current_user.auth_level == "superadmin" %>
         <button id ="contact-number" class="edit-button btn btn-warning float-right">Edit</button>
+        <% end %>
       </li>
       <li class="list-group-item">
         <strong>Email Address:</strong> <%= @user.email %>
+        <% if current_user.id == @user.id || current_user.auth_level == "superadmin" %>
         <button id ="email" class="edit-button btn btn-warning float-right">Edit</button>
+        <% end %>
       </li>
       <li class="list-group-item">
+        <% if current_user.id == @user.id || current_user.auth_level == "superadmin" %>
         <button type="button" class="btn btn-danger w-100" data-toggle="modal" data-target="#deleteModal">
           Delete Account
         </button>
+        <% end %>
        </li>
     </ul>
   </div>
@@ -156,6 +168,8 @@
 </div>
 
 <script>
+
+  $()
 
   $(".close").click(function(){
     $(".text-field").addClass("d-none");

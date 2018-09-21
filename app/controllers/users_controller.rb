@@ -16,7 +16,7 @@ class UsersController < ApplicationController
 	end
 
 	def create
-		@user = User.create(user_params, auth_level: "basic")
+		@user = User.create(user_params)
 		redirect_to '/'
 	end
 
