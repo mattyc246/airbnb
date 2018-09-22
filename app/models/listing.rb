@@ -19,7 +19,8 @@ class Listing < ApplicationRecord
       'Zipcode' => 'listing[zipcode]',
       'Address' => 'listing[address]',
       'Price' => 'listing[price]',
-      'Description' => 'listing[description]'
+      'Description' => 'listing[description]',
+      'Add Photos To Listing' => 'listing[avatar]'
 
     }
 

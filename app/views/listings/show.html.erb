@@ -69,6 +69,7 @@
 	        <%= form.label :attribute, id:"attr-label"  %>
 	        <%= form.select :name, options_for_select(Listing.for_update), prompt: "Please Select One", include_blank: true %></br>
 	        <%= form.text_field :name, id:"new-value", placeholder:'Enter new details...' %>
+	        <%= form.file_field :avatar, id:"avatar-upload", multiple: false, class:'d-none' %>
 
 	      </div>
 	      <div class="modal-footer">
@@ -102,9 +103,20 @@
 		$('#listing_name').change(function(){
 
 		    var selected = $(':selected', this);
+
+		    if (selected.attr('value') != 'listing[avatar]'){
+
 		    $("#new-value")[0].attributes[4].nodeValue = selected.attr('value');
 		    $("#attr-label").text(selected[0].innerHTML);
 		    $("#listing_name").fadeOut().remove();
+
+			} else {
+
+				$("#attr-label").remove();
+				$("#new-value").remove();
+				$("#listing_name").remove();
+				$("#avatar-upload").removeClass("d-none");
+			}
 
 		});
 
