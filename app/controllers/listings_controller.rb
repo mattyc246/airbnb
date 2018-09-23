@@ -21,11 +21,11 @@ class ListingsController < ApplicationController
 
 	def create
 
-		@listing = Listing.new(listing_params, verified: false)
+		@listing = Listing.new(listing_params)
 
 		@listing.user_id = current_user.id
 
-		if current_user.auth_level == "host"
+		if current_user.auth_level == "host" || current_user.auth_level == "superadmin"
 
 			if @listing.save
 			
