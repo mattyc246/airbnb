@@ -1,6 +1,13 @@
 <div class="card" style="width: 100;">
   <div class="card-body text-center">
+    <% if @user.avatar? %>
+    <%= image_tag((@user.avatar_url), class:"card-img-top w-25 rounded-circle mx-auto d-block") if @user.avatar? %>
+    <% else %>
     <img class="card-img-top w-25 rounded-circle mx-auto d-block" src="/assets/profile.jpg" alt="Card image cap">
+    <% end %>
+    <% if current_user.id == @user.id || current_user.auth_level == "superadmin" %>
+    <button id ="avatar" class="edit-button btn btn-success mt-3">Change Profile Photo</button>
+    <% end %>
     <h1 class="card-text m-2 p-1"><%= @user.first_name %>'s Profile</h1>
     <h5 class="card-title">Account Type: <%= @user.auth_level %></h5>
   </div>
@@ -100,7 +107,7 @@
 
 
 <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
+  <div class="modal-dialog modal-dialog-centered modal-md" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalCenterTitle">Edit <%= @user.first_name %></h5>
@@ -110,33 +117,31 @@
       </div>
       <div class="modal-body text-center">
 
-        <%= form_for :user, method: (:patch) do |form| %>
+        <%= bootstrap_form_for :user, method: (:patch) do |form| %>
 
           <div id="first-name-field" class="text-field p-1 d-none">
-            <%= form.label :first_name %>
             <%= form.text_field :first_name, placeholder: "Jesse", class:"shadow" %>
           </div>
 
           <div id="last-name-field" class="text-field p-1 d-none">
-            <%= form.label :last_name %>
             <%= form.text_field :last_name, placeholder: "James", class:"shadow ml-1" %>
           </div>
 
           <div id="contact-number-field" class="text-field p-1 d-none">
-            <%= form.label :contact_no %>
             <%= form.text_field :contact_number, placeholder: "+60-123456789", class:"shadow" %>
           </div>
 
           <div id="birthday-field" class="text-field p-1 d-none">
-            <%= form.label :birthday %>
             <%= form.text_field :date_of_birth, placeholder: "DD/MM/YYYY", class:"shadow ml-3" %>
           </div>
 
           <div id="email-field" class="text-field p-1 d-none">
-            <%= form.label :email %>
             <%= form.text_field :email, type: 'email', placeholder: "jesse@example.com", class:"shadow ml-4" %>
           </div>
 
+          <div id="avatar-field" class="text-field p-1 d-none">
+            <%= form.file_field :avatar, multiple: false %>
+          </div>
       </div>
       <div class="modal-footer">
           <%= form.submit 'Save Changes', class:'btn btn-success' %>
@@ -192,7 +197,10 @@
     } else if (event.target.id == 'email') {
       $('#editModal').modal()
       $('#email-field').removeClass("d-none");
-    };
+    } else if (event.target.id == 'avatar') {
+      $('#editModal').modal()
+      $('#avatar-field').removeClass("d-none");
+    }
 
   })
 

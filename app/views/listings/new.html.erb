@@ -58,8 +58,10 @@
          </tr>
        </tbody>
      </table>
-
+     <div class='text-center'>
+     <%= form.file_field :avatars, multiple: true %></br>
      <%= form.submit "Create Listing", class:"btn btn-primary m-3" %>
+     </div>
 
      <% end %>
 

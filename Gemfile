@@ -41,6 +41,9 @@ gem 'country_select', '~> 3.1'
 # Add Pagination to Listings
 gem 'kaminari'
 
+# Image Uploader
+gem 'carrierwave', '~> 1.0'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
@@ -83,3 +86,7 @@ gem 'omniauth-google-oauth2'
 # Seeding Fake Details
 
 gem 'faker'
+
+# Bootstrap form gem
+
+gem "bootstrap_form", ">= 4.0.0.alpha1"

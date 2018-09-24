@@ -2,6 +2,7 @@ class Listing < ApplicationRecord
 
   belongs_to :user
   paginates_per 10
+  mount_uploaders :avatars, AvatarUploader
 
   def self.for_update
     
@@ -18,7 +19,8 @@ class Listing < ApplicationRecord
       'Zipcode' => 'listing[zipcode]',
       'Address' => 'listing[address]',
       'Price' => 'listing[price]',
-      'Description' => 'listing[description]'
+      'Description' => 'listing[description]',
+      'Add Photos To Listing' => 'listing[avatar]'
 
     }
 

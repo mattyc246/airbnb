@@ -60,7 +60,8 @@
 
   <%= yield %>
 <script>
-$(".alert").delay(1000).fadeOut('slow')
+$(".alert").delay(1000).fadeOut('slow');
+$('.carousel').carousel({interval: false})
 </script>
 </body>
 </html>
