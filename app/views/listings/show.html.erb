@@ -109,7 +109,7 @@
 	        <%= form.label :attribute, id:"attr-label"  %>
 	        <%= form.select :name, options_for_select(Listing.for_update), prompt: "Please Select One", include_blank: true %></br>
 	        <%= form.text_field :name, id:"new-value", placeholder:'Enter new details...' %>
-	        <%= form.file_field :avatars, id:"avatar-upload", multiple: false, class:'d-none' %>
+	        <%= form.file_field :avatars, id:"avatar-upload", multiple: true, class:'d-none' %>
 
 	      </div>
 	      <div class="modal-footer">
