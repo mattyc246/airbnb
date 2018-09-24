@@ -12,6 +12,8 @@ Rails.application.routes.draw do
       only: [:create, :edit, :update]
   end
 
+  post '/listings/:id/remove_image/:i_id' => "listings#remove_image", as: "delete_avatar"
+
   # post '/listings/:id/verify' => "listings#verify", as: "verify_listing"
 
   resources :listings do

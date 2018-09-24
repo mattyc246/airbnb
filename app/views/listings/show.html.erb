@@ -9,10 +9,16 @@
 			  	  <% if index == 0 %>
 				    <div class="carousel-item active">
 				      <%= image_tag((photo), class:"d-block w-100") %>
+				      <div class="carousel-caption d-none d-md-block">
+				      <%= button_to "Remove Photo", delete_avatar_path(@listing ,index), method: (:post), class:"btn btn-danger" %>
+				  	  </div>
 				    </div>
 				  <% else %>
 				  	<div class="carousel-item">
 				  	  <%= image_tag((photo), class:"d-block w-100") %>
+				  	  <div class="carousel-caption d-none d-md-block">
+				  	    <%= button_to "Remove Photo", delete_avatar_path(@listing ,index), method: (:post), class:"btn btn-danger" %>
+				  	  </div>
 				  	</div>
 				  <% end %>
 			    <% end %>
@@ -99,7 +105,7 @@
 	        <%= form.label :attribute, id:"attr-label"  %>
 	        <%= form.select :name, options_for_select(Listing.for_update), prompt: "Please Select One", include_blank: true %></br>
 	        <%= form.text_field :name, id:"new-value", placeholder:'Enter new details...' %>
-	        <%= form.file_field :avatar, id:"avatar-upload", multiple: false, class:'d-none' %>
+	        <%= form.file_field :avatars, id:"avatar-upload", multiple: false, class:'d-none' %>
 
 	      </div>
 	      <div class="modal-footer">
