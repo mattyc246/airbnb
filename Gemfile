@@ -44,6 +44,13 @@ gem 'kaminari'
 # Image Uploader
 gem 'carrierwave', '~> 1.0'
 
+gem 'carrierwave-aws'
+
+gem 'mini_magick'
+
+gem 'aws-sdk-rails'
+
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
