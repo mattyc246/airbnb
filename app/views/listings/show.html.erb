@@ -1,6 +1,6 @@
 
 
-	<div class="card text-center" style="width: 100;">
+	<div class="card text-center clearfix" style="width: 100;">
 		<% if @listing.avatars? %>
 
 			<div id="carouselExampleFade" class="carousel slide carousel-fade" data-ride="carousel">
@@ -62,6 +62,11 @@
     	  <p id="info-icon" class="nav-item"><i class="fas fa-bed"></i> Beds: <%= @listing.bed_number %></p>
     	  <p id="info-icon" class="nav-item"><i class="fas fa-money-bill-alt"></i> Price: <%= number_to_currency(@listing.price, unit: '$') %> Per Night</p>
     	</nav>
+    <section class="container-fluid w-100">
+      	<div id="booking-box"class="border rounded w-25 shadow float-right">
+      		<input id="book-dates" class="m-2" type="text" placeholder="Select Dates.."></br>
+      		<button id="book-now" class="btn btn-danger m-2">Book Now!</button>
+      	</div>
       <div class="card-body">
         <h5 class="card-title">Host</h5>
         <p class="card-text"><%= @listing.user.first_name %> <%= @listing.user.last_name %></p>
@@ -91,6 +96,7 @@
 		<% end %>
 
 	  </div>
+	</section>
 	</div>
 
 
@@ -139,6 +145,10 @@
 	  </div>
 	</div>
 	<script>
+
+		flatpickr("#book-dates", {
+			mode: "range"
+		});
 
 		$('#listing_name').change(function(){
 

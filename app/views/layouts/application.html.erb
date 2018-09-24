@@ -4,6 +4,8 @@
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
 
   <link href="https://fonts.googleapis.com/css?family=Bitter|Oxygen|Rubik|Pacifico" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
   <%= javascript_include_tag 'application' %>
   <%= stylesheet_link_tag 'application' %>
   <%= csrf_meta_tag %>
@@ -68,6 +70,9 @@
 <script>
 $(".alert").delay(1000).fadeOut('slow');
 $('.carousel').carousel({interval: false})
+flatpickr("#flatpickr-input", {
+  mode: "range"
+});
 </script>
 </body>
 </html>
