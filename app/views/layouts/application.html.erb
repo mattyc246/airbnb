@@ -26,7 +26,13 @@
         </li>
         <% end %>
         <li class="nav-item dropleft ml-auto">
-          <a class="nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><%= current_user.first_name %></a>
+          <a class="nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+            <% if current_user.avatar? %>
+              <%= image_tag((current_user.avatar_url), class:"card-img-top av-size rounded-circle mx-auto d-block") %>
+            <% else %>
+            <img class="card-img-top w-25 rounded-circle mx-auto d-block" src="/assets/profile.jpg" alt="Card image cap">
+            <% end %>
+          </a>
           <div class="dropdown-menu">
             <% if current_user.auth_level == "superadmin"%>
               <a href="/users" class="dropdown-item">Management</a>

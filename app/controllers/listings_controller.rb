@@ -30,7 +30,7 @@ class ListingsController < ApplicationController
 			if @listing.save
 			
 				flash[:notice] = "Successfully Hosted Listing!"
-				redirect_to '/listings/<%= @listing.id %>'
+				redirect_to '/listings/#{@listing.id}'
 
 			else
 
@@ -104,6 +104,37 @@ class ListingsController < ApplicationController
 
 		end
 
+	end
+
+	def remove_image
+
+		@listing = Listing.find(params[:id])
+
+		if current_user.id == listing.user.id || current_user.auth_level == "superadmin"
+
+			remain_images = @listing.avatars
+			deleted_image = remain_images.delete_at(params[:i_id].to_i)
+			deleted_image.try(:remove!)
+			@listing.avatars = remain_images
+
+			if @listing.save
+
+				flash[:notice] = 'Photo Deleted!'
+				redirect_to listing_path(@listing)
+
+			else
+
+				flash[:notice] = 'Unable to delete photo! Please try again!'
+				redirect_to listing_path(@listing)
+
+			end
+
+		else
+
+			flash[:notice] = "You do not have the authority to peform this action!"
+			redirect_to listing_path(@listing)
+
+		end
 	end
 	
 	private

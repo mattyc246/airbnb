@@ -1,15 +1,15 @@
 <div class="card" style="width: 100;">
   <div class="card-body text-center">
     <% if @user.avatar? %>
-    <%= image_tag((@user.avatar_url), class:"card-img-top w-25 rounded-circle mx-auto d-block") if @user.avatar? %>
+      <%= image_tag((@user.avatar_url), class:"card-img-top w-25 rounded-circle mx-auto d-block")%>
     <% else %>
-    <img class="card-img-top w-25 rounded-circle mx-auto d-block" src="/assets/profile.jpg" alt="Card image cap">
+      <img class="card-img-top w-25 rounded-circle mx-auto d-block" src="/assets/profile.jpg" alt="Card image cap">
     <% end %>
     <% if current_user.id == @user.id || current_user.auth_level == "superadmin" %>
-    <button id ="avatar" class="edit-button btn btn-success mt-3">Change Profile Photo</button>
+      <button id ="avatar" class="edit-button btn btn-success mt-3">Change Profile Photo</button>
     <% end %>
-    <h1 class="card-text m-2 p-1"><%= @user.first_name %>'s Profile</h1>
-    <h5 class="card-title">Account Type: <%= @user.auth_level %></h5>
+      <h1 class="card-text m-2 p-1"><%= @user.first_name %>'s Profile</h1>
+      <h5 class="card-title">Account Type: <%= @user.auth_level %></h5>
   </div>
   <ul class="list-group list-group-flush text-center">
     <li class="list-group-item bg-secondary text-white">Member Since: <%= @user.created_at.year %></li>
