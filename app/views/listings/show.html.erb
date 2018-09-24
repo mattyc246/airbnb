@@ -9,16 +9,20 @@
 			  	  <% if index == 0 %>
 				    <div class="carousel-item active">
 				      <%= image_tag((photo), class:"d-block w-100") %>
+				      <% if current_user.id == @listing.user_id || current_user.auth_level == 'superadmin' %> 
 				      <div class="carousel-caption d-none d-md-block">
 				      <%= button_to "Remove Photo", delete_avatar_path(@listing ,index), method: (:post), class:"btn btn-danger" %>
 				  	  </div>
+				  	  <% end %>
 				    </div>
 				  <% else %>
 				  	<div class="carousel-item">
 				  	  <%= image_tag((photo), class:"d-block w-100") %>
+				  	  <% if current_user.id == @listing.user_id || current_user.auth_level == 'superadmin' %>
 				  	  <div class="carousel-caption d-none d-md-block">
 				  	    <%= button_to "Remove Photo", delete_avatar_path(@listing ,index), method: (:post), class:"btn btn-danger" %>
 				  	  </div>
+				  	  <% end %>
 				  	</div>
 				  <% end %>
 			    <% end %>

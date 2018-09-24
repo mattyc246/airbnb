@@ -110,10 +110,10 @@ class ListingsController < ApplicationController
 
 		@listing = Listing.find(params[:id])
 
-		remain_images = @listing.avatars # copy the array
-		deleted_image = remain_images.delete_at(params[:i_id].to_i) # delete the target image
-		deleted_image.try(:remove!) # delete image from S3
-		@listing.avatars = remain_images # re-assign back
+		remain_images = @listing.avatars
+		deleted_image = remain_images.delete_at(params[:i_id].to_i)
+		deleted_image.try(:remove!)
+		@listing.avatars = remain_images
 
 		@listing.save
 
