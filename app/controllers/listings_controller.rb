@@ -30,7 +30,7 @@ class ListingsController < ApplicationController
 			if @listing.save
 			
 				flash[:notice] = "Successfully Hosted Listing!"
-				redirect_to '/listings/<%= @listing.id %>'
+				redirect_to '/listings/#{@listing.id}'
 
 			else
 

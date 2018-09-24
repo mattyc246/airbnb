@@ -1,7 +1,7 @@
 <div class="card" style="width: 100;">
   <div class="card-body text-center">
     <% if @user.avatar? %>
-    <%= image_tag((@user.avatar_url), class:"card-img-top w-25 rounded-circle mx-auto d-block") if @user.avatar? %>
+    <%= image_tag((@user.avatar_url), class:"card-img-top w-25 rounded-circle mx-auto d-block")%>
     <% else %>
     <img class="card-img-top w-25 rounded-circle mx-auto d-block" src="/assets/profile.jpg" alt="Card image cap">
     <% end %>
