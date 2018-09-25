@@ -174,12 +174,30 @@
 		$(document).ready(function(){
 
 			$.ajax({
-				url:
-				method:
-				dataType:
-			})
+				url: "/bookings/return_dates",
+				method: "GET",
+				data:{listing_id: <%= @listing.id %>},
+				dataType: "JSON",
+				success: function(data){
 
-		})
+					var disable_array = [];
+
+					for (i = 0; i < data.check_in.length; i++){
+						disable_array.push({from: data.check_in[i], to: data.check_out[i]},)
+					};
+
+					flatpickr("#book-dates", {
+						mode: "range",
+						dateFormat: "Y-m-d",
+						disable: disable_array
+			
+					});
+				},
+				error: function(data){
+					console.log(data);
+				}
+			});
+		});
 
 		$('#listing_name').change(function(){
 
