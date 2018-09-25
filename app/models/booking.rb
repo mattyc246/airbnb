@@ -2,19 +2,16 @@ class Booking < ApplicationRecord
 
 	belongs_to :user
 	belongs_to :listing
-	validate :check_overlap
+	validate :check_dates
 
-	def check_overlap
-		listing = self.listing
-		bookings = self.listing.bookings
+	def check_dates
 
-		bookings.each do |x|
+		current_bookings = Booking.where(listing_id: self.listing.id)
 
-			dates_taken = 
 
-		end
+
+		self.check_in
+
 	end
-
-
 
 end

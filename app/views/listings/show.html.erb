@@ -63,10 +63,16 @@
     	  <p id="info-icon" class="nav-item"><i class="fas fa-money-bill-alt"></i> Price: <%= number_to_currency(@listing.price, unit: '$') %> Per Night</p>
     	</nav>
     <section class="container-fluid w-100">
+
       	<div id="booking-box"class="border rounded w-25 shadow float-right">
       		<input id="book-dates" class="m-2" type="text" placeholder="Select Dates.."></br>
-      		<button id="book-now" class="btn btn-danger m-2">Book Now!</button>
+      			<%= form_with url: bookings_path(listing_id: @listing.id) do |f| %>
+      				<%= f.hidden_field :check_in, id: 'check_in_field' %>
+      				<%= f.hidden_field :check_out, id: 'check_out_field' %>
+      				<%= f.submit "Book Now", class:"btn btn-danger m-2" %>
+      			<% end %>
       	</div>
+
       <div class="card-body">
         <h5 class="card-title">Host</h5>
         <p class="card-text"><%= @listing.user.first_name %> <%= @listing.user.last_name %></p>
@@ -149,6 +155,21 @@
 		flatpickr("#book-dates", {
 			mode: "range"
 		});
+
+		$("#book-dates").change(function(){
+
+			booking_dates = $('#book-dates')[0].value.split(' to ');
+
+			var check_in = booking_dates[0];
+
+			var check_out = booking_dates[1];
+
+			$("#check_in_field")[0].value = check_in;
+
+			$("#check_out_field")[0].value = check_out;
+
+
+		})
 
 		// $("#book-now").(function(){
 		// 	$.ajax({
