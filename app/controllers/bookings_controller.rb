@@ -7,7 +7,6 @@ class BookingsController < ActionController::Base
 	end
 
 	def create
-
 		@booking = Booking.new(booking_params)
 
 		if @booking.save
