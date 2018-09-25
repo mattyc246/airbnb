@@ -2,7 +2,7 @@
 
 	<div class=" d-flex flex-wrap justify-content-center">
   
-	<div class="card text-center m-5" style="width: 50rem;">
+	<div class="card text-center m-5 shadow-lg" style="width: 50rem;">
 	  <div class="card-header">
 	   <%= @booking.listing.name %>
 	  </div>
@@ -14,16 +14,13 @@
 	      	<h6><u>Booking Overview:</u></h6>
 	      	<ul class="nav justify-content-center nav-fill m-3">
 	        <li class="nav-item">
-	          <p>Rooms: <%= @booking.listing.room_number %></p>
+	          <p>Rooms: <%= @booking.listing.room_number %> </p>
 	        </li>
 	        <li class="nav-item">
 	          <p>Guests: <%= @booking.listing.guest_number %> </p>
 	        </li>
 	        <li class="nav-item">
 	          <p>Beds: <%= @booking.listing.bed_number %></p>
-	        </li>
-	        <li class="nav-item">
-	          <p>Lemons: </p>
 	        </li>
 	        </ul>
 	      </li>
@@ -42,18 +39,51 @@
 	          <p><%= @booking.listing.state %></p>
 	        </li>
 	        <li class="nav-item">
-	          <p><%= @booking.listing.country_name %></p>
+	          <p><%= @booking.listing.country %></p>
 	        </li>
 	        </ul>
 	      </li>
 	      <li class="list-group-item">Total Cost: <%= number_to_currency(@booking.total_cost, unit: '$') %></li>
 	    </ul>
-	    <a href="#" class="btn btn-primary">Go somewhere</a>
+	    <a id="pay-now" class="btn btn-danger text-white">Pay Now!</a>
 	  </div>
 	</div>
 	
 	</div>
+
+
+	<div class="modal fade" id="braintreeModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+	  <div class="modal-dialog modal-dialog-centered" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h5 class="modal-title" id="exampleModalCenterTitle">Complete Payment</h5>
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          <span aria-hidden="true">&times;</span>
+	        </button>
+	      </div>
+	      <div class="modal-body">
+	        Something Something Something Darkside...
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+	        <button type="button" class="btn btn-primary">Pay</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+
   
 
 
 </section>
+
+
+<script>
+
+	$('#pay-now').click(function(){
+
+	$("#braintreeModal").modal();
+		
+	})
+
+</script>
