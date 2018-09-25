@@ -4,6 +4,8 @@ Rails.application.routes.draw do
 
   root 'home#index'
 
+  post '/booking/:id/checkout/' => "braintree#checkout", as: "braintree_checkout"
+
   resources :passwords, controller: "clearance/passwords", only: [:create, :new]
   resource :session, controller: "clearance/sessions", only: [:create]
 
