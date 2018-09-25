@@ -1,8 +1,14 @@
-class BookingsController < ActionController::Base
+class BookingsController < ApplicationController
   
 	def new
 
 		@booking = Booking.new
+
+	end
+
+	def show
+
+		@booking = Booking.find(params[:id])
 
 	end
 
@@ -38,7 +44,7 @@ class BookingsController < ActionController::Base
 
 		end
 
-		check_out =@listing.bookings.each_with_object([]) do |booking, array|
+		check_out = @listing.bookings.each_with_object([]) do |booking, array|
 
 			array << booking.check_out
 

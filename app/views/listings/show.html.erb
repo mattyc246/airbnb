@@ -64,6 +64,9 @@
     	</nav>
     <section class="container-fluid w-100">
 
+    	<% if @listing.verified? %>
+
+    	<% else %>
       	<div id="booking-box"class="border rounded w-25 shadow float-right">
       		<input id="book-dates" class="m-2" type="text" placeholder="Select Dates.."></br>
       			<%= form_with url: bookings_path(listing_id: @listing.id, user_id: current_user.id) do |f| %>
@@ -72,6 +75,7 @@
       				<%= f.submit "Book Now", class:"btn btn-danger m-2" %>
       			<% end %>
       	</div>
+      	<% end %>
 
       <div class="card-body">
         <h5 class="card-title">Host</h5>
