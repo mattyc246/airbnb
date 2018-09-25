@@ -1,15 +1,59 @@
 <section class="container">
 
-	<div class="card">
+	<div class=" d-flex flex-wrap justify-content-center">
+  
+	<div class="card text-center m-5" style="width: 50rem;">
 	  <div class="card-header">
 	   <%= @booking.listing.name %>
 	  </div>
 	  <div class="card-body">
-	    <h5 class="card-title">Special title treatment</h5>
-	    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+	    <h3 class="card-title">Booking For: <%= @booking.user.first_name %> <%= @booking.user.last_name %></h3>
+	    <ul class="list-group flex-wrap m-3">
+	      <li class="list-group-item"><h5>Total Nights: <%= (@booking.check_in...@booking.check_out).count %></h5></li>
+	      <li class="list-group-item">
+	      	<h6><u>Booking Overview:</u></h6>
+	      	<ul class="nav justify-content-center nav-fill m-3">
+	        <li class="nav-item">
+	          <p>Rooms: <%= @booking.listing.room_number %></p>
+	        </li>
+	        <li class="nav-item">
+	          <p>Guests: <%= @booking.listing.guest_number %> </p>
+	        </li>
+	        <li class="nav-item">
+	          <p>Beds: <%= @booking.listing.bed_number %></p>
+	        </li>
+	        <li class="nav-item">
+	          <p>Lemons: </p>
+	        </li>
+	        </ul>
+	      </li>
+	      <li class="list-group-item">
+	      	<ul class="nav justify-content-center flex-column m-3">
+	        <li class="nav-item">
+	          <h5>Address:</h5>
+	        </li>
+	        <li class="nav-item">
+	          <p><%= @booking.listing.address %></p>
+	        </li>
+	        <li class="nav-item">
+	          <p><%= @booking.listing.city %></p>
+	        </li>
+	        <li class="nav-item">
+	          <p><%= @booking.listing.state %></p>
+	        </li>
+	        <li class="nav-item">
+	          <p><%= @booking.listing.country_name %></p>
+	        </li>
+	        </ul>
+	      </li>
+	      <li class="list-group-item">Total Cost: <%= number_to_currency(@booking.total_cost, unit: '$') %></li>
+	    </ul>
 	    <a href="#" class="btn btn-primary">Go somewhere</a>
 	  </div>
 	</div>
+	
+	</div>
+  
 
 
 </section>
