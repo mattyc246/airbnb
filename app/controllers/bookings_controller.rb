@@ -34,7 +34,6 @@ class BookingsController < ApplicationController
 
 	def return_dates
 
-		p params
 
 		@listing = Listing.find(params[:listing_id])
 
