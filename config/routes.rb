@@ -22,8 +22,8 @@ Rails.application.routes.draw do
 
   patch "/listings/:id" => "listings#update", as: "update_listing"
 
-
-
+  get "/bookings/return_dates" => "bookings#return_dates", as: "return_dates"
+  resources :bookings, only: [:show, :create, :destroy]
 
 
 

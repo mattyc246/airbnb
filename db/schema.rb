@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_22_080659) do
+ActiveRecord::Schema.define(version: 2018_09_25_062659) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,6 +23,19 @@ ActiveRecord::Schema.define(version: 2018_09_22_080659) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_authentications_on_user_id"
+  end
+
+  create_table "bookings", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "listing_id"
+    t.date "check_in"
+    t.date "check_out"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.decimal "total_cost"
+    t.boolean "payment_status"
+    t.index ["listing_id"], name: "index_bookings_on_listing_id"
+    t.index ["user_id"], name: "index_bookings_on_user_id"
   end
 
   create_table "listings", force: :cascade do |t|
@@ -45,18 +58,6 @@ ActiveRecord::Schema.define(version: 2018_09_22_080659) do
     t.datetime "updated_at", null: false
     t.json "avatars"
     t.index ["user_id"], name: "index_listings_on_user_id"
-  end
-
-  create_table "reservations", force: :cascade do |t|
-    t.bigint "listing_id"
-    t.bigint "user_id"
-    t.date "check_in"
-    t.date "check_out"
-    t.integer "guests"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["listing_id"], name: "index_reservations_on_listing_id"
-    t.index ["user_id"], name: "index_reservations_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|

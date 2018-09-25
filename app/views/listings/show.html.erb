@@ -1,6 +1,6 @@
 
 
-	<div class="card text-center" style="width: 100;">
+	<div class="card text-center clearfix" style="width: 100;">
 		<% if @listing.avatars? %>
 
 			<div id="carouselExampleFade" class="carousel slide carousel-fade" data-ride="carousel">
@@ -62,6 +62,21 @@
     	  <p id="info-icon" class="nav-item"><i class="fas fa-bed"></i> Beds: <%= @listing.bed_number %></p>
     	  <p id="info-icon" class="nav-item"><i class="fas fa-money-bill-alt"></i> Price: <%= number_to_currency(@listing.price, unit: '$') %> Per Night</p>
     	</nav>
+    <section class="container-fluid w-100">
+
+    	<% if @listing.verified? %>
+
+    	<% else %>
+      	<div id="booking-box"class="border rounded w-25 shadow float-right">
+      		<input id="book-dates" class="m-2" type="text" placeholder="Select Dates.."></br>
+      			<%= form_with url: bookings_path(listing_id: @listing.id, user_id: current_user.id) do |f| %>
+      				<%= f.hidden_field :check_in, id: 'check_in_field' %>
+      				<%= f.hidden_field :check_out, id: 'check_out_field' %>
+      				<%= f.submit "Book Now", class:"btn btn-danger m-2" %>
+      			<% end %>
+      	</div>
+      	<% end %>
+
       <div class="card-body">
         <h5 class="card-title">Host</h5>
         <p class="card-text"><%= @listing.user.first_name %> <%= @listing.user.last_name %></p>
@@ -91,6 +106,7 @@
 		<% end %>
 
 	  </div>
+	</section>
 	</div>
 
 
@@ -139,6 +155,53 @@
 	  </div>
 	</div>
 	<script>
+
+		flatpickr("#book-dates", {
+			mode: "range"
+		});
+
+		$("#book-dates").change(function(){
+
+			booking_dates = $('#book-dates')[0].value.split(' to ');
+
+			var check_in = booking_dates[0];
+
+			var check_out = booking_dates[1];
+
+			$("#check_in_field")[0].value = check_in;
+
+			$("#check_out_field")[0].value = check_out;
+
+
+		})
+
+		$(document).ready(function(){
+
+			$.ajax({
+				url: "/bookings/return_dates",
+				method: "GET",
+				data:{listing_id: <%= @listing.id %>},
+				dataType: "JSON",
+				success: function(data){
+
+					var disable_array = [];
+
+					for (i = 0; i < data.check_in.length; i++){
+						disable_array.push({from: data.check_in[i], to: data.check_out[i]},)
+					};
+
+					flatpickr("#book-dates", {
+						mode: "range",
+						dateFormat: "Y-m-d",
+						disable: disable_array
+			
+					});
+				},
+				error: function(data){
+					console.log(data);
+				}
+			});
+		});
 
 		$('#listing_name').change(function(){
 
