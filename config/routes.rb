@@ -25,9 +25,10 @@ Rails.application.routes.draw do
 
   patch "/listings/:id" => "listings#update", as: "update_listing"
 
+  get "/bookings/view_all" => "bookings#view_all", as: "booking_all"
   get "/bookings/return_dates" => "bookings#return_dates", as: "return_dates"
   resources :bookings, only: [:show, :create, :destroy]
-
+  get "/bookings/:id/cancel" => "bookings#cancel", as: "booking_cancel"
 
 
   get "/sign_in" => "clearance/sessions#new", as: "sign_in"

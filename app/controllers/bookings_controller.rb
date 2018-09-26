@@ -1,4 +1,5 @@
 class BookingsController < ApplicationController
+
   
 	def new
 
@@ -31,6 +32,12 @@ class BookingsController < ApplicationController
 			redirect_to "/listings/#{params[:listing_id]}"
 
 		end
+	end
+
+	def view_all
+
+		@booking = Booking.where(user_id: current_user.id) 
+
 	end
 
 	def return_dates
