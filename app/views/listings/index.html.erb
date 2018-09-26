@@ -1,69 +1,11 @@
-<%= render partial: '/listings/filter' %>
+<%= render partial: '/listings/filter_form' %>
 <section class="container mt-4">
 
-	<ul class="d-flex flex-wrap justify-content-center">
-		<% @listing.each do |l| %>
-			<li class="list-inline-item">
-				<div class="card m-2 text-center shadow-lg" style="width: 20rem;">
-
-				<% if l.avatars? %>
-
-					<div id="carouselExampleFade" class="carousel slide carousel-fade" data-ride="carousel">
-					  <div class="carousel-inner">
-					  	<% l.avatars_urls.each_with_index do |photo, index| %>
-					  	  <% if index == 0 %>
-						    <div class="carousel-item active">
-						      <%= image_tag((photo), class:"d-block w-100") %>
-						    </div>
-						  <% else %>
-						  	<div class="carousel-item">
-						  	  <%= image_tag((photo), class:"d-block w-100") %>
-						  	</div>
-						  <% end %>
-					    <% end %>
-					  </div>
-					  <a class="carousel-control-prev" href="#carouselExampleFade" role="button" data-slide="prev">
-					    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-					    <span class="sr-only">Previous</span>
-					  </a>
-					  <a class="carousel-control-next" href="#carouselExampleFade" role="button" data-slide="next">
-					    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-					    <span class="sr-only">Next</span>
-					  </a>
-					</div>
-
-				<% else %>
-
-				  <img class="card-img-top" src="/assets/download.svg" alt="Card image cap">
-
-				<% end %>
-
-				  <div class="card-body">
-				    <h5 class="card-title"><%= l.name %></h5>
-				    <p class="text-muted"><%= l.place_type %></p>
-				    <h6 class="text-muted text-center"><%= number_to_currency(l.price, unit: '$') %> Per Night</h6>
-				  </div>
-				  <ul class="list-group list-group-flush">
-					  	<% if l.verified == true %>
-					  	<li class="list-group-item text-center text-success"><i class="fas fa-check-circle"></i> Verified</li>
-					  	<% else %>
-					  	<li class="list-group-item text-center"><i class="fas fa-times-circle"></i> Unverified</li>
-					  	<% end %>
-					    <li class="list-group-item text-center">
-					    	<i class="fas fa-door-closed"></i> <%= l.room_number %> | 
-					    	<i class="fas fa-user"></i> <%= l.guest_number %> | 
-					    	<i class="fas fa-bed"></i> <%= l.bed_number %>
-					    </li>
-					  </ul>
-				  <div class="card-body text-center">
-				    <a href="/listings/<%= l.id %>" class="card-link">Book Listing</a>
-				  </div>
-				</div>
-			</li>
-		<% end %>
-	</ul>
-	
-			<%= paginate @listing %>
+	<div id="listings-page">
+	<%= render partial: '/listings/listings' %>
+			
+	<%= paginate @listing %>
+	</div>
 
 </section>
 
