@@ -7,6 +7,12 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
   <link rel="stylesheet" type="text/css" href="https://npmcdn.com/flatpickr/dist/themes/dark.css">
 
+  <!-- Load the Client component. -->
+  <script src="https://js.braintreegateway.com/web/3.6.3/js/client.min.js"></script>
+
+  <!-- Load the Hosted Fields component. -->
+  <script src="https://js.braintreegateway.com/web/3.6.3/js/hosted-fields.min.js"></script>
+
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
   <%= javascript_include_tag 'application' %>
   <%= stylesheet_link_tag 'application' %>
@@ -21,11 +27,11 @@
   <div class="collapse navbar-collapse" id="navbarText">
     <ul class="navbar-nav w-100">
       <% if signed_in? -%>
-        <li class="nav-item">
+        <li class="nav-item my-auto">
           <a href="/listings" class="btn btn-link text-body">View Listings</a>
         </li>
         <% if current_user.auth_level == "host" || current_user.auth_level == "superadmin" %>
-        <li class="nav-item">
+        <li class="nav-item my-auto">
           <a href="/listings/new" class="btn btn-link text-body">Be A  Host</a>
         </li>
         <% end %>
