@@ -1,15 +1,182 @@
 <section class="container">
 
-	<div class="card">
+	<div class=" d-flex flex-wrap justify-content-center">
+  
+	<div class="card text-center m-5 shadow-lg" style="width: 50rem;">
 	  <div class="card-header">
 	   <%= @booking.listing.name %>
 	  </div>
 	  <div class="card-body">
-	    <h5 class="card-title">Special title treatment</h5>
-	    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-	    <a href="#" class="btn btn-primary">Go somewhere</a>
+	    <h3 class="card-title">Booking For: <%= @booking.user.first_name %> <%= @booking.user.last_name %></h3>
+	    <ul class="list-group flex-wrap m-3">
+	      <li class="list-group-item"><h5>Total Nights: <%= (@booking.check_in...@booking.check_out).count %></h5></li>
+	      <li class="list-group-item">
+	      	<h6><u>Booking Overview:</u></h6>
+	      	<ul class="nav justify-content-center nav-fill m-3">
+	        <li class="nav-item">
+	          <p>Rooms: <%= @booking.listing.room_number %> </p>
+	        </li>
+	        <li class="nav-item">
+	          <p>Guests: <%= @booking.listing.guest_number %> </p>
+	        </li>
+	        <li class="nav-item">
+	          <p>Beds: <%= @booking.listing.bed_number %></p>
+	        </li>
+	        </ul>
+	      </li>
+	      <li class="list-group-item">
+	      	<ul class="nav justify-content-center flex-column m-3">
+	        <li class="nav-item">
+	          <h5>Address:</h5>
+	        </li>
+	        <li class="nav-item">
+	          <p><%= @booking.listing.address %></p>
+	        </li>
+	        <li class="nav-item">
+	          <p><%= @booking.listing.city %></p>
+	        </li>
+	        <li class="nav-item">
+	          <p><%= @booking.listing.state %></p>
+	        </li>
+	        <li class="nav-item">
+	          <p><%= @booking.listing.country %></p>
+	        </li>
+	        </ul>
+	      </li>
+	      <li class="list-group-item">Total Cost: <%= number_to_currency(@booking.total_cost, unit: '$') %></li>
+	    </ul>
+	    <a id="pay-now" class="btn btn-danger text-white">Pay Now!</a>
 	  </div>
+	</div>
+	
 	</div>
 
 
+	<div class="modal fade" id="braintreeModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+	  <div class="modal-dialog modal-dialog-centered" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h5 class="modal-title" id="exampleModalCenterTitle">Complete Payment</h5>
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          <span aria-hidden="true">&times;</span>
+	        </button>
+	      </div>
+	      <div class="modal-body">
+	        <div class="demo-frame">
+
+	          <%= form_for :checkout_form, url: braintree_checkout_path(@booking.id), html: { id: "cardForm"} do |form| %>
+
+	            <%= form.label :card_number, "Credit Card Number", html: {class: "hosted-fields--label"} %>
+	            <div id="card-number" class="hosted-field"></div>
+
+	            <%= form.label :expiration_date, "Expiration Date", html: {class: "hosted-fields--label"} %>
+	            <div id="expiration-date" class="hosted-field"></div>
+
+	            <%= form.label :cvv, "CVV", html: {class: "hosted-fields--label"} %>
+	            <div id="cvv" class="hosted-field"></div>
+
+	            <%= form.hidden_field "payment_method_nonce" %>
+
+	        </div>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+	        <div class="button-container">
+	          <%= form.submit "Complete Purchase", disabled: true, class: "btn btn-danger", id: "submit-payment-btn" %>
+	          <% end %>
+	        </div>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+
+	<!-- Load the Client component. -->
+	<script src="https://js.braintreegateway.com/web/3.6.3/js/client.min.js"></script>
+
+	<!-- Load the Hosted Fields component. -->
+	<script src="https://js.braintreegateway.com/web/3.6.3/js/hosted-fields.min.js"></script>
+
+	<script>
+	      var form = document.querySelector('#cardForm');
+	      var submit = document.querySelector('#submit-payment-btn');
+	      var authorize = '<%= @client_token %>'
+
+	      braintree.client.create({
+	        authorization: '<%= @client_token %>'
+	      }, function (clientErr, clientInstance) {
+	        if (clientErr) {
+	          console.error(clientErr);
+	          return;
+	        }
+
+	        // This example shows Hosted Fields, but you can also use this
+	        // client instance to create additional components here, such as
+	        // PayPal or Data Collector.
+
+	        braintree.hostedFields.create({
+	          client: clientInstance,
+	          styles: {
+	            'input': {
+	              'font-size': '14px'
+	            },
+	            'input.invalid': {
+	              'color': 'red'
+	            },
+	            'input.valid': {
+	              'color': 'green'
+	            }
+	          },
+	          fields: {
+	            number: {
+	              selector: '#card-number',
+	              placeholder: '4111 1111 1111 1111'
+	            },
+	            cvv: {
+	              selector: '#cvv',
+	              placeholder: '123'
+	            },
+	            expirationDate: {
+	              selector: '#expiration-date',
+	              placeholder: '10/2019'
+	            }
+	          }
+	        }, function (hostedFieldsErr, hostedFieldsInstance) {
+	          if (hostedFieldsErr) {
+	            console.error(hostedFieldsErr);
+	            return;
+	          }
+
+	          submit.removeAttribute('disabled');
+
+	          form.addEventListener('submit', function (event) {
+	            event.preventDefault();
+
+	            hostedFieldsInstance.tokenize(function (tokenizeErr, payload) {
+	              if (tokenizeErr) {
+	                console.error(tokenizeErr);
+	                return;
+	              }
+
+	              // If this was a real integration, this is where you would
+	              // send the nonce to your server.
+	              document.querySelector('input[name="checkout_form[payment_method_nonce]"]').value = payload.nonce;
+	              form.submit();
+	            });
+	          }, false);
+	        });
+	      });
+	    </script>  
+
+
 </section>
+
+
+<script>
+
+	$('#pay-now').click(function(){
+
+	$("#braintreeModal").modal();
+		
+	})
+
+</script>

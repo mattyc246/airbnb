@@ -10,7 +10,7 @@ class Booking < ApplicationRecord
 
 		current_bookings.each do |booking|
 
-			if (self.check_in..self.check_out).overlaps?(booking.check_in..booking.check_out)
+			if (self.check_in..self.check_out).overlaps?(booking.check_in..booking.check_out) && booking != self
 				errors.add(:check_in, "There is an overlap with the dates.")
 			end
 

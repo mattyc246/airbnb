@@ -9,6 +9,7 @@ class BookingsController < ApplicationController
 	def show
 
 		@booking = Booking.find(params[:id])
+		@client_token = Braintree::ClientToken.generate
 
 	end
 
@@ -34,7 +35,6 @@ class BookingsController < ApplicationController
 
 	def return_dates
 
-		p params
 
 		@listing = Listing.find(params[:listing_id])
 
@@ -58,7 +58,7 @@ class BookingsController < ApplicationController
 
 	def booking_params
 
-		params.permit(:check_in, :check_out, :listing_id, :user_id)
+		params.permit(:check_in, :check_out, :listing_id, :user_id, :payment_status)
 		
 
 	end
