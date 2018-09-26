@@ -26,5 +26,7 @@ $(document).ready(function(){
 		e.preventDefault();
 		filter_call(this[1].name, this[1].value)});
 
+	$('.dropdown-toggle').dropdown();
+
 
 	});
