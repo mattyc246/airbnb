@@ -27,7 +27,7 @@
 				    <a href="/bookings/<%= b.id %>"  class="card-link">Pay Now</a>
 				    <% else %>
 				    <p>Please check your listings cancellation policy! FireBnB will not be held responsible for any losses or charges incurred!</p>
-				    <a href="/bookings/<%= b.id %>/cancel"  class="card-link text-danger">Cancel Booking</a>
+				    <a href="/bookings/<%= b.id %>/cancel" data-confirm="Are you sure? You may still be charged for part of the booking!" class="card-link text-danger">Cancel Booking</a>
 				    <% end %>
 				  </div>
 				</div>

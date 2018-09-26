@@ -136,8 +136,37 @@ class ListingsController < ApplicationController
 
 		end
 	end
+
+	def filter
+
+		if search_params.include?("guest_number") || search_params.include?("room_number")
+
+			value = search_params.values[0].split('..').map{|d| Integer(d)}
+
+			new_hash = {search_params.keys[0] => value[0]..value[1]}
+
+			@listing = Listing.where(new_hash).page params[:page]
+
+		else
+
+			@listing = Listing.where(search_params).page params[:page]
+
+		end
+
+
+			respond_to do |format|
+		  		format.js {@listing}
+		  		format.html { render 'listings/index' }
+			end
+	end
 	
 	private
+
+	def search_params
+
+		params.permit(:verified ,:name, :place_type, :property_type, :room_number, :bed_number, :guest_number, :country, :state, :city, :zipcode, :address, :price, :description, :user_id, :listing, {avatars: []})
+
+	end
 
 	def listing_params
 

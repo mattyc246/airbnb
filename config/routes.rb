@@ -17,7 +17,7 @@ Rails.application.routes.draw do
 
   post '/listings/:id/remove_image/:i_id' => "listings#remove_image", as: "delete_avatar"
 
-  # post '/listings/:id/verify' => "listings#verify", as: "verify_listing"
+  get '/listings/filter' => "listings#filter", as: "filter_listing"
 
   resources :listings do
     resource :verify, only: [:create, :update]

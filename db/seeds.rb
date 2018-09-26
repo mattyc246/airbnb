@@ -47,7 +47,7 @@ ActiveRecord::Base.transaction do
 
     listing['room_number'] = rand(0..5)
     listing['bed_number'] = rand(1..6)
-    listing['guest_number'] = rand(1..10)
+    listing['guest_number'] = rand(1..30)
 
     listing['country'] = Faker::Address.country
     listing['state'] = Faker::Address.state
@@ -55,7 +55,7 @@ ActiveRecord::Base.transaction do
     listing['zipcode'] = Faker::Address.zip_code
     listing['address'] = Faker::Address.street_address
 
-    listing['price'] = rand(80..500)
+    listing['price'] = rand(10..250)
     listing['description'] = Faker::Hipster.sentence
     listing['verified'] = false
 
