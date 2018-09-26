@@ -90,13 +90,12 @@
 	  </div>
 	</div>
 
-	<!-- Load the Client component. -->
-	<script src="https://js.braintreegateway.com/web/3.6.3/js/client.min.js"></script>
 
-	<!-- Load the Hosted Fields component. -->
-	<script src="https://js.braintreegateway.com/web/3.6.3/js/hosted-fields.min.js"></script>
+</section>
 
 	<script>
+		$(document).ready(function(){
+
 	      var form = document.querySelector('#cardForm');
 	      var submit = document.querySelector('#submit-payment-btn');
 	      var authorize = '<%= @client_token %>'
@@ -165,18 +164,13 @@
 	          }, false);
 	        });
 	      });
-	    </script>  
 
+		$('#pay-now').click(function(){
 
-</section>
+		$("#braintreeModal").modal();
+			
+		})
 
-
-<script>
-
-	$('#pay-now').click(function(){
-
-	$("#braintreeModal").modal();
-		
-	})
+	});
 
 </script>

@@ -40,6 +40,23 @@ class BookingsController < ApplicationController
 
 	end
 
+	def cancel
+
+		booking = Booking.find(params[:id])
+
+		if booking.destroy
+
+			flash[:notice] = "Booking cancelled! You will receive an email once the refund is complete!"
+			redirect_to '/bookings/view_all'
+
+		else
+
+			flash[:notice] = "Unable to cancel booking! Please contact Admin if problems persist!"
+			redirect_to "/bookings/#{params[:id]}"
+		end
+
+	end
+
 	def return_dates
 
 
