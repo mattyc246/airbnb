@@ -53,6 +53,10 @@ gem 'aws-sdk-rails'
 # PayPal Braintree Payment Gateway System
 gem 'braintree'
 
+# Searching in App
+
+gem 'pg_search'
+
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
