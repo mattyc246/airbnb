@@ -162,15 +162,32 @@ class ListingsController < ApplicationController
 
 	def search
 
-		
+		@autofill = []
 
+		search_return = Listing.search_by_city(params[:search])
+
+		search_return.each do |listing|
+
+			if !@autofill.include?(listing.city)
+
+				@autofill << listing.city
+
+			end
+
+		end
+
+		respond_to do |format|
+
+			format.js {@autofill}
+
+		end	
 	end
 	
 	private
 
 	def search_params
 
-		params.permit(:verified ,:name, :place_type, :property_type, :room_number, :bed_number, :guest_number, :country, :state, :city, :zipcode, :address, :price, :description, :user_id, :listing, {avatars: []})
+		params.permit(:verified ,:name, :place_type, :property_type, :room_number, :bed_number, :guest_number, :country, :state, :city, :zipcode, :address, :price, :description, :user_id, :listing, :search)
 
 	end
 

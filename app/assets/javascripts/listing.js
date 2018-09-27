@@ -26,23 +26,40 @@ $(document).ready(function(){
 		e.preventDefault();
 		filter_call(this[1].name, this[1].value)});
 
-	$('.dropdown-toggle').dropdown();
+	$('.search-city').keyup(function(){
 
-	$('.search-city').change(function(){
-
-		var attribute = this.name
+		var attribute = "search"
 
 		var value = this.value
+
+		var json = {}
 
 		json[attribute] = value
 
 		$.ajax({
 			url: "/listings/search",
 			method: "GET",
-			data: json
+			data: json,
+			success: function(){
+				$('.dropdown-item').click(function(e){
+					e.preventDefault();
+					$("#city")[0].value = (e.target.innerHTML)
+
+				})
+			}
 		});
 
 
-	})
+
+	});
+
+	// $(".dropdown-item").click(function(event){
+	// 	event.preventDefault();
+	// 	console.log(this)
+	// 	$(".search-city").text(this.text);
+
+	// })
+
+
 
 	});
