@@ -33,13 +33,12 @@
     </li>
   </ul>
   <div class="dropdown">
-    <form class="form-inline">
-      <input class="form-control mr-sm-2 dropdown-toggle" type="search" placeholder="Search" aria-label="Search">
-      <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-      </div>
-
-      <button class="btn btn-outline-dark my-2 my-sm-0" type="submit">Search</button>
-    </form>
+      <%= form_with url: filter_listing_path, class:"form-inline" do |f| %>
+        <%= f.text_field :search, placeholder: "Search City...", class: "form-control mr-sm-2 dropdown-toggle search-city" %>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+        </div>
+        <%= f.submit "Search", class: "btn btn-outline-dark my-2 my-sm-0" %>
+      <% end %>
   </div>
      
 </nav>

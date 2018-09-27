@@ -159,6 +159,12 @@ class ListingsController < ApplicationController
 		  		format.html { render 'listings/index' }
 			end
 	end
+
+	def search
+
+		
+
+	end
 	
 	private
 

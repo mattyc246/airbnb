@@ -5,8 +5,8 @@ class Listing < ApplicationRecord
   has_many :bookings, dependent: :destroy
   paginates_per 10
   mount_uploaders :avatars, AvatarUploader
-  pg_search_scope :search_by_address,
-                  :against => [:address, :zipcode, :city, :state, :country],
+  pg_search_scope :search_by_city,
+                  :against => :city,
                   :using => {:tsearch => {:prefix => true}}
 
 

@@ -28,5 +28,21 @@ $(document).ready(function(){
 
 	$('.dropdown-toggle').dropdown();
 
+	$('.search-city').change(function(){
+
+		var attribute = this.name
+
+		var value = this.value
+
+		json[attribute] = value
+
+		$.ajax({
+			url: "/listings/search",
+			method: "GET",
+			data: json
+		});
+
+
+	})
 
 	});
