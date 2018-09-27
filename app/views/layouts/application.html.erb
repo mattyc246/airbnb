@@ -57,8 +57,8 @@
           </div>
         </li>
       <% else %>
-        <li class="nav-item">
-          <button class="btn btn-link" href="#"><%= link_to t(".sign_in"), sign_in_path %></button>
+        <li class="nav-item my-auto">
+          <%= link_to t(".sign_in"), sign_in_path, class:"btn btn-link text-body" %>
         </li>
       <span class="navbar-text ml-auto">
         The hottest booking app. Its lit!
