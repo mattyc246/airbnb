@@ -1,9 +1,14 @@
 class Listing < ApplicationRecord
 
+  include PgSearch
   belongs_to :user
   has_many :bookings, dependent: :destroy
   paginates_per 10
   mount_uploaders :avatars, AvatarUploader
+  pg_search_scope :search_by_city,
+                  :against => :city,
+                  :using => {:tsearch => {:prefix => true}}
+
 
   def self.for_update
     

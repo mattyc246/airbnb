@@ -19,6 +19,8 @@ Rails.application.routes.draw do
 
   get '/listings/filter' => "listings#filter", as: "filter_listing"
 
+  get '/listings/search' => "listings#search", as: "search_listing"
+
   resources :listings do
     resource :verify, only: [:create, :update]
   end

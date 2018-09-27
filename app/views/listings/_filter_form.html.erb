@@ -32,5 +32,13 @@
 
     </li>
   </ul>
-   
+  <div class="dropdown">
+      <%= form_with url: filter_listing_path, method: (:get), class:"form-inline" do |f| %>
+        <%= f.text_field :city, placeholder: "Search City...", class: "form-control mr-sm-2 dropdown-toggle search-city", data: {toggle:"dropdown"} %>
+        <div id="autofill-list" class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+        </div>
+        <%= f.submit "Search", class: "btn btn-outline-dark my-2 my-sm-0" %>
+      <% end %>
+  </div>
+     
 </nav>
