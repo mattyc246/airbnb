@@ -13,14 +13,14 @@
   <!-- Load the Hosted Fields component. -->
   <script src="https://js.braintreegateway.com/web/3.6.3/js/hosted-fields.min.js"></script>
 
-<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
   <%= javascript_include_tag 'application' %>
   <%= stylesheet_link_tag 'application' %>
   <%= csrf_meta_tag %>
 </head>
 <body>
 
-    <nav class="navbar navbar-expand-lg navbar-light bg-light shadow">
+    <nav id="head-nav" class="navbar navbar-expand-lg navbar-light bg-light shadow">
     <a class="navbar-brand" href="/">FireBnB</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -76,6 +76,7 @@
   <% end %>
 
   <%= yield %>
+  
 <script>
 $(".alert").delay(1000).fadeOut('slow');
 $('.carousel').carousel({interval: false})

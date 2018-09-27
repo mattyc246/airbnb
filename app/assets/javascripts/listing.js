@@ -52,15 +52,9 @@ $(document).ready(function(){
 
 
 
+
+
 	});
-
-	// $(".dropdown-item").click(function(event){
-	// 	event.preventDefault();
-	// 	console.log(this)
-	// 	$(".search-city").text(this.text);
-
-	// })
-
 
 
 	});

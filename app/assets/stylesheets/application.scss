@@ -23,7 +23,7 @@
 body {
 	height: 100vh;
 	font-family: "Bitter", "Arial", sans-serif;
-	background-image: image_url('spiration.png');
+	background-image: image_url('full_bloom.png');
 	background-repeat: repeat;
 	background-size: auto;
 }
@@ -47,4 +47,12 @@ body {
 #booking-box {
 	position: absolute;
 	right: 10px;
+}
+
+#filter-toggle{
+	margin-top: -5px;
+}
+
+#head-nav{
+	z-index: 1;
 }
