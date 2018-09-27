@@ -1,0 +1,20 @@
+    Thank you for booking with FireBnB, <%= @user.name %>
+
+    Congratulations on your booking, we hope you will enjoy your stay at <%= @booking.name %>.
+    Booking Details:
+
+    Host: <%= @host.name %>
+      Address:
+      <%= @listing.address %>
+      <%= @listing.city %>
+      <%= @listing.state %>
+      <%= @listing.zipcode %>
+      <%= @listing.country %>
+      
+      Nights Stay: <%= @days %>
+      Total Cost: <%= @booking.total_cost %>
+    
+  
+      Please make immediate payment to secure the booking. The booking will be cancelled if payment isn't complete within 48 hours!
+    
+    Thanks from the team at FireBnB!

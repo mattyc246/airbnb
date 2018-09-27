@@ -23,6 +23,7 @@ class BookingsController < ApplicationController
 
 		if @booking.save
 
+			BookingsMailer.booking_email(current_user).deliver_now
 			flash[:notice] = "Booking Successfully Made! Please make immediate payment to secure booking!"
 			redirect_to "/bookings/#{@booking.id}"
 
