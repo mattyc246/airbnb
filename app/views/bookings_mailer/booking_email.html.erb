@@ -1,11 +1,11 @@
 
-    <h1>Thank you for booking with FireBnB, <%= @user.name %></h1>
+    <h1>Thank you for booking with FireBnB, <%= @user.first_name %> <%= @user.last_name %></h1>
     <p>
-      Congratulations on your booking, we hope you will enjoy your stay at <%= @booking.name %>.
+      Congratulations on your booking, we hope you will enjoy your stay at <%= @listing.name %>.
     </p>
     <h3>Booking Details:</h3>
     <ul>
-      <li>Host: <%= @host.name %></li>
+      <li>Host: <%= @host.first_name %></li>
       <li>
       Address:</br>
       <%= @listing.address %></br>

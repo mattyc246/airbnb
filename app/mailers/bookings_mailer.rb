@@ -2,9 +2,9 @@ class BookingsMailer < ApplicationMailer
 	default from: 'bookings@example.com'
 
 
-	def booking_email(booking_id, check_in, check_out, total_cost)
+	def booking_email(booking_id, user_id)
 
-		@user = current_user
+		@user = User.find(user_id)
 
 		@booking = Booking.find(booking_id)
 

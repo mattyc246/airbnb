@@ -1,7 +1,7 @@
 var filter_call = function(key,v){
 
 		var attribute = key
-		// console.log(attribute)
+		
 		var value = v 
 
 		var json = {}

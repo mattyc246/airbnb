@@ -1,9 +1,9 @@
-    Thank you for booking with FireBnB, <%= @user.name %>
+    Thank you for booking with FireBnB, <%= @user.first_name %> <%= @user.last_name %>
 
-    Congratulations on your booking, we hope you will enjoy your stay at <%= @booking.name %>.
+    Congratulations on your booking, we hope you will enjoy your stay at <%= @listing.name %>.
     Booking Details:
 
-    Host: <%= @host.name %>
+    Host: <%= @host.first_name %>
       Address:
       <%= @listing.address %>
       <%= @listing.city %>

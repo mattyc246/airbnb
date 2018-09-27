@@ -14,7 +14,7 @@
   <ul class="list-group list-group-flush text-center">
     <li class="list-group-item bg-secondary text-white">Member Since: <%= @user.created_at.year %></li>
     <li class="list-group-item">Listings: <%= @user.listings.count %></li>
-    <li class="list-group-item bg-secondary text-white">Bookings Made:</li>
+    <li class="list-group-item bg-secondary text-white">Bookings Made: <%= @user.bookings.count %></li>
   </ul>
   <div class="card-body container">
     <ul class="list-group list-group-flush text-left">
