@@ -50,7 +50,6 @@
               <% end %>
               <a href="/users/<%= current_user.id %>" class="dropdown-item">View Profile</a>
               <a class="dropdown-item" href="/bookings/view_all">View Bookings</a>
-              <a class="dropdown-item" href="#">Nothing</a>
               <div class="dropdown-divider"></div>
               <a class="dropdown-item">
                 <%= button_to "Sign Out", sign_out_path, method: :delete, class:"btn btn-link text-body" %>

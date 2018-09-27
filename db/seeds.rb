@@ -6,25 +6,6 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-require 'json'
-require 'open-uri'
-
-gallery = JSON.parse(open('http://imgur.com/gallery.json').read)['gallery']
-
-# construct URLs
-gallery.each {|i| i['url'] = "http://imgur.com/#{i['hash']}#{i['ext']}" }
-
-# select images that aren't too big
-gallery.select {|i| i['size'] < 200_000 }
-# or images that aren't too small
-gallery.select {|i| i['width'] > 400 && i['height'] > 400 }
-
-# select only PNG images
-gallery.select {|i| i['ext'] == '.png'}
-
-# use images in Carrierwave https://github.com/jnicklas/carrierwave
-# (because Carrierwave can download images out-of-the-box; otherwise you'd have to
-# download the image and attach it as a file)
 
 user = {}
 user['password'] = '1234'
@@ -78,12 +59,10 @@ ActiveRecord::Base.transaction do
 
     listing['price'] = rand(10..250)
     listing['description'] = Faker::Hipster.sentence
-    listing['verified'] = false
+    listing['verified'] = [false, true].sample
 
     
     listing['user_id'] = uids.sample
-
-    listing['avatars'] = gallery.sample['url']
 
     Listing.create(listing)
   end
