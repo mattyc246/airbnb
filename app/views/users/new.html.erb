@@ -1,23 +1,2 @@
-<div class="container h-100 align-items-center">
-  <div class="row w-50 h-50 border rounded perfect-centering bg-light shadow-lg">
-    <div class="col"> 
-      <div id="clearance" class="sign-up perfect-centering text-center">
-        
-        <h2><%= t(".title") %></h2>
 
-        <%= form_for @user do |form| %>
-          <%= render partial: '/users/form', object: form %>
-
-          <div class="submit-field">
-            <%= form.submit "Register", class:"btn btn-primary" %>
-          </div>
-
-          <div class="other-links">
-            <%= link_to "Already Registered? Sign In Now", sign_in_path %>
-          </div>
-        <% end %>   
-
-      </div>
-    </div>
-  </div>
-</div>
+	<%= render partial: '/users/form' %>
