@@ -43,7 +43,8 @@ $(document).ready(function(){
 			success: function(){
 				$('.dropdown-item').click(function(e){
 					e.preventDefault();
-					$("#city")[0].value = (e.target.innerHTML)
+					$("#city")[0].value = (e.target.innerHTML);
+					$("#autofill-list").removeClass('show');
 
 				})
 			}
