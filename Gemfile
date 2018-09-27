@@ -57,6 +57,9 @@ gem 'braintree'
 
 gem 'pg_search'
 
+# Background Jobs Server
+gem 'sidekiq'
+
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
