@@ -47,7 +47,7 @@
     	</div>
     	<nav id="info-bar" class="nav justify-content-center nav-fill m-3">
     	  <div id="verified-status">
-    	  <% if @listing.verified == false %>
+    	  <% if @listing.verified != true %>
     	  	<% if current_user.auth_level == "moderator" %>
     	  		<button id="verify" class="btn btn-success text-white"><i class="fas fa-check-circle"></i> Verify</button> 
     	  	<% else %>
@@ -64,7 +64,7 @@
     	</nav>
     <section class="container-fluid w-100">
 
-    	<% if @listing.verified? %>
+    	<% if @listing.verified != true %>
 
     	<% else %>
      

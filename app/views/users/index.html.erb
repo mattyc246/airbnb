@@ -24,10 +24,11 @@
 	      <td><%= u.email %></td>
 	      <td><%= u.contact_number %></td>
 	      <td><%= u.auth_level %></td>
-	      <%= form_for u, method: (:patch) do |form| %>
-	      <td><%= form.select :auth_level, options_for_select(["superadmin","moderator","host","basic"]), include_blank: true %></td>
-	      <td><%= form.submit "Apply", class: 'btn btn-primary'  %></td>
-	      <% end %>
+	      <td class="d-flex"><%= form_for u, method: (:patch) do |form| %>
+	      <%= form.select :auth_level, options_for_select(["superadmin","moderator","host","basic"]), include_blank: true %>
+	
+	      <%= form.submit "Apply", class: 'btn btn-primary'  %>
+	      <% end %></td>
 	    </tr>
 	    <% end %>
 	  </tbody>
