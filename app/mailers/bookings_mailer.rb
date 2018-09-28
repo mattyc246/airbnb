@@ -1,3 +1,4 @@
+
 class BookingsMailer < ApplicationMailer
 	default from: 'bookings@example.com'
 

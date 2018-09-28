@@ -64,6 +64,10 @@ ActiveRecord::Base.transaction do
     
     listing['user_id'] = uids.sample
 
+    listing['avatars'] = [Rails.root.join("app/assets/images/stock/#{rand(1..20)}.jpeg").open, 
+                            Rails.root.join("app/assets/images/stock/#{rand(1..20)}.jpeg").open, 
+                            Rails.root.join("app/assets/images/stock/#{rand(1..20)}.jpeg").open]
+
     Listing.create(listing)
   end
 end
