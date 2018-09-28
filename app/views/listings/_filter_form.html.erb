@@ -22,6 +22,13 @@
       <% end %>
 
     </li>
+    <li class="nav-item dropdown my-auto">
+
+      <%= form_with url: filter_listing_path do |f| %>
+      <%= f.select :tags, options_for_select([["Non Smoking"], ["Hairdryer"], ["Pets Allowed"], ["Baby Crib"], ["Minibar"], ["Swimming Pool"]]), {prompt: "Features"}, {:class => "btn btn-outline-light dropdown-toggle bg-secondary text-white filter-choice m-2"} %>
+      <% end %>
+
+    </li>
     <li class="nav-item my-auto">
 
       <%= form_with url: filter_listing_path, method: (:get), class: "filter-choice-form" do |f| %>
