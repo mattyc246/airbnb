@@ -9,10 +9,10 @@
 	  <div class="card-body">
 	    <h3 class="card-title">Booking For: <%= @booking.user.first_name %> <%= @booking.user.last_name %></h3>
 	    <ul class="list-group flex-wrap m-3">
-	      <li class="list-group-item"><h5>Total Nights: <%= (@booking.check_in...@booking.check_out).count %></h5></li>
+	      <li class="list-group-item"><h5><strong>Total Nights:</strong> <%= (@booking.check_in...@booking.check_out).count %> | <strong>Check In:</strong> <%= @booking.check_in %> <strong>Check Out:</strong> <%= @booking.check_out %></h5></li>
 	      <li class="list-group-item">
 	      	<h6><u>Booking Overview:</u></h6>
-	      	<ul class="nav justify-content-center nav-fill m-3">
+	      	<ul class="nav justify-content-center nav-fill m-1">
 	        <li class="nav-item">
 	          <p>Rooms: <%= @booking.listing.room_number %> </p>
 	        </li>
@@ -67,13 +67,13 @@
 	          <%= form_for :checkout_form, url: braintree_checkout_path(@booking.id), html: { id: "cardForm"} do |form| %>
 
 	            <%= form.label :card_number, "Credit Card Number", html: {class: "hosted-fields--label"} %>
-	            <div id="card-number" class="hosted-field"></div>
+	            <div id="card-number" class="hosted-field form-control"></div>
 
 	            <%= form.label :expiration_date, "Expiration Date", html: {class: "hosted-fields--label"} %>
-	            <div id="expiration-date" class="hosted-field"></div>
+	            <div id="expiration-date" class="hosted-field form-control"></div>
 
 	            <%= form.label :cvv, "CVV", html: {class: "hosted-fields--label"} %>
-	            <div id="cvv" class="hosted-field"></div>
+	            <div id="cvv" class="hosted-field form-control"></div>
 
 	            <%= form.hidden_field "payment_method_nonce" %>
 
@@ -92,11 +92,8 @@
 
 
 </section>
-
-	<script>
+<script>
 		$(document).ready(function(){
-			// $("#submit-payment-btn").click(function() {console.log('clicked')});
-
 
 	      var form = document.querySelector('#cardForm');
 	      var submit = document.querySelector('#submit-payment-btn');
@@ -174,5 +171,4 @@
 		})
 
 	});
-
 </script>

@@ -1,33 +1,55 @@
-<div class="text-field p-1">
-	<%= form.label :first_name %>
-	<%= form.text_field :first_name, placeholder: "Jesse", class:"shadow" %>
-</div>
+<div class="container-fluid w-100 p-3">
+  <div class="d-flex flex-wrap justify-content-center w-50 border border-dark rounded shadow-lg p-3 bg-white my-auto mx-auto">
+    <div class="text-center">
 
-<div class="text-field">
-	<%= form.label :last_name %>
-	<%= form.text_field :last_name, placeholder: "James", class:"shadow ml-1" %>
-</div>
+    	<h2>Sign Up</h2>
 
-<div class="text-field p-1">
-	<%= form.label :contact_no %>
-	<%= form.text_field :contact_number, placeholder: "+60-123456789", class:"shadow" %>
-</div>
+	    	<%= form_for @user do |form| %>
 
-<div class="text-field">
-	<%= form.label :birthday %>
-	<%= form.text_field :date_of_birth, placeholder: "DD/MM/YYYY", class:"shadow ml-3" %>
-</div>
+				<div class="text-field p-2">
+					<%= form.label :first_name %></br>
+					<%= form.text_field :first_name, placeholder: "Jesse", class:"form-control-sm" %>
+				</div>
 
-<div class="text-field p-1">
-  <%= form.label :email %>
-  <%= form.text_field :email, type: 'email', placeholder: "jesse@example.com", class:"shadow ml-4" %>
-</div>
+				<div class="text-field p-2">
+					<%= form.label :last_name %></br>
+					<%= form.text_field :last_name, placeholder: "James", class:"form-control-sm" %>
+				</div>
 
-<div class="password-field">
-  <%= form.label :password %>
-  <%= form.password_field :password, placeholder:"jesse123", class:"shadow" %>
-</div>
+				<div class="text-field p-2">
+					<%= form.label :contact_no %></br>
+					<%= form.text_field :contact_number, placeholder: "+60-123456789", class:"form-control-sm" %>
+				</div>
 
-<div class="text-field p-1">
-  <%= form.file_field :avatar, multiple: false %>
+				<div class="text-field">
+					<%= form.label :birthday %></br>
+					<%= form.text_field :date_of_birth, placeholder: "DD/MM/YYYY", class:"form-control-sm" %>
+				</div>
+
+				<div class="text-field p-1">
+				  <%= form.label :email %></br>
+				  <%= form.text_field :email, type: 'email', placeholder: "jesse@example.com", class:"form-control-sm" %>
+				</div>
+
+				<div class="password-field">
+				  <%= form.label :password %></br>
+				  <%= form.password_field :password, placeholder:"jesse123", class:"form-control-sm" %>
+				</div>
+
+				<div class="text-field p-1">
+				  <%= form.file_field :avatar, multiple: false, class:"form-control-file" %>
+				</div>
+
+			  <div class="submit-field">
+			    <%= form.submit "Register", class:"btn btn-primary" %>
+			  </div>
+
+			  <div class="other-links">
+			    <%= link_to "Already Registered? Sign In Now", sign_in_path %>
+			  </div>
+
+			<% end %> 
+
+		</div>
+	</div>
 </div>

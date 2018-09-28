@@ -5,6 +5,8 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+
 user = {}
 user['password'] = '1234'
 
@@ -57,11 +59,14 @@ ActiveRecord::Base.transaction do
 
     listing['price'] = rand(10..250)
     listing['description'] = Faker::Hipster.sentence
-    listing['verified'] = false
+    listing['verified'] = [false, true].sample
 
     
     listing['user_id'] = uids.sample
-    
+
+    listing['avatars'] = [Rails.root.join("app/assets/images/stock/#{rand(1..20)}.jpeg").open, 
+                            Rails.root.join("app/assets/images/stock/#{rand(1..20)}.jpeg").open, 
+                            Rails.root.join("app/assets/images/stock/#{rand(1..20)}.jpeg").open]
 
     Listing.create(listing)
   end

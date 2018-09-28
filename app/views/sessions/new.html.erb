@@ -1,12 +1,4 @@
-<div class="container h-100 align-items-center">
-	<div class="row w-50 h-50 border rounded perfect-centering bg-light shadow-lg">
-		<div class="col">	
-			<div id="clearance" class="sign-in perfect-centering text-center">
-			  <h2><%= t(".title") %></h2>
-
-			  <%= render partial: '/sessions/form' %>
-
-			</div>
-		</div>
-	</div>
-</div>
+<head>
+	<%= stylesheet_link_tag 'sessions' %>
+</head>
+ <%= render partial: '/sessions/form' %>
