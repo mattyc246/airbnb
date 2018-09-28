@@ -25,6 +25,8 @@ class ListingsController < ApplicationController
 
 		@listing.user_id = current_user.id
 
+		@listing.verified = false
+
 		if current_user.auth_level == "host" || current_user.auth_level == "superadmin"
 
 			if @listing.save

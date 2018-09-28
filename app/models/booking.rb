@@ -3,6 +3,10 @@ class Booking < ApplicationRecord
 	belongs_to :user
 	belongs_to :listing
 	validate :check_dates
+	validates :check_in, presence: true
+	validates :check_out, presence: true
+	validates :user_id, presence: true
+	validates :listing_id, presence: true
 
 	def check_dates
 

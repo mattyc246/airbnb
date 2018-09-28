@@ -16,8 +16,21 @@ class UsersController < ApplicationController
 	end
 
 	def create
-		@user = User.create(user_params)
-		redirect_to '/'
+		user = User.new(user_params)
+
+		user.auth_level = "basic"
+
+		if user.save
+
+			flash[:notice] = "Successfully Registered!"
+			redirect_to '/signin'
+
+		else
+
+			flash[:notice] = "Registration Incomplete, check for missing information!"
+			redirect_to request.referrer
+		end
+
 	end
 
 	def show
