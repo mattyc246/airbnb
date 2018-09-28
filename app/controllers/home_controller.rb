@@ -2,7 +2,7 @@ class HomeController < ApplicationController
 
   def index
 
-  	@listing = Listing.all
+  	@listing = Listing.find(rand(1..Listing.count))
 
 
   end
