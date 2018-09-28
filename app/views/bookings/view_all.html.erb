@@ -4,7 +4,7 @@
 		<% @booking.each do |b| %>
 			<li class="list-inline-item">
 				<div class="card m-2 text-center shadow-lg" style="width: 20rem;">
-				  <img class="card-img-top" src="/assets/download.svg" alt="Card image cap">
+				  <img class="card-img-top" src="<%= b.listing.avatars_urls.sample %>" alt="Card image cap">
 				  <div class="card-body">
 				    <h5 class="card-title"><%= b.listing.name %></h5>
 				    <p class="text-muted"><%= b.listing.place_type %></p>

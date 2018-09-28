@@ -45,7 +45,7 @@
 		<div class="card-img-overlay h-25">
     		<h2 class="card-title"><%= @listing.name %></h2>
     	</div>
-    	<nav id="info-bar" class="nav justify-content-center nav-fill m-3">
+    	<nav id="info-bar" class="nav justify-content-center nav-fill m-3 border-bottom">
     	  <div id="verified-status">
     	  <% if @listing.verified != true %>
     	  	<% if current_user.auth_level == "moderator" %>
@@ -61,6 +61,7 @@
     	  <p id="info-icon" class="nav-item"><i class="fas fa-door-closed"></i> Rooms: <%= @listing.room_number %></p>
     	  <p id="info-icon" class="nav-item"><i class="fas fa-bed"></i> Beds: <%= @listing.bed_number %></p>
     	  <p id="info-icon" class="nav-item"><i class="fas fa-money-bill-alt"></i> Price: <%= number_to_currency(@listing.price, unit: '$') %> Per Night</p>
+
     	</nav>
     <section class="container-fluid w-100">
 
@@ -68,7 +69,8 @@
 
     	<% else %>
      
-      	<div id="booking-box"class="border rounded w-25 shadow float-right">
+      	<div id="booking-box"class="border rounded w-25 shadow float-right p-2">
+      		<h5>Check Availability:</h5>
       		<input id="book-dates" class="m-2" type="text" placeholder="Select Dates.."></br>
       			<%= form_with url: bookings_path(listing_id: @listing.id, user_id: current_user.id) do |f| %>
       				<%= f.hidden_field :check_in, id: 'check_in_field' %>
@@ -79,20 +81,20 @@
       	<% end %>
 
       <div class="card-body">
-        <h5 class="card-title">Host</h5>
-        <p class="card-text"><%= @listing.user.first_name %> <%= @listing.user.last_name %></p>
+        <h5 class="card-title"><u>Host</u></h5>
+        <a class="btn btn-link text-body" href="/users/<%= @listing.user.id %>"><%= @listing.user.first_name %> <%= @listing.user.last_name %></a>
         <p id="contact-number" class="card-text"></p>
         <button id="show-number" class="btn btn-success">Show Contact No.</button>
       </div>
       <div class="card-body">
-        <h5 class="card-title">Address</h5>
+        <h5 class="card-title"><u>Address</u></h5>
         <p class="card-text"><%= @listing.address %></p>
         <p class="card-text"><%= @listing.city %></p>
         <p class="card-text"><%= @listing.state %>, <%= @listing.zipcode %></p>
         <p class="card-text"><%= @listing.country %></p>
       </div>
 	  <div class="card-body">
-	    <h5 class="card-title">Description</h5>
+	    <h5 class="card-title"><u>Description</u></h5>
 	    <p class="card-text"><%= @listing.description %></p>
 
 	    <% if current_user.id == @listing.id || current_user.auth_level == "superadmin" %>
