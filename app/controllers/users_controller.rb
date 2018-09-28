@@ -23,7 +23,7 @@ class UsersController < ApplicationController
 		if user.save
 
 			flash[:notice] = "Successfully Registered!"
-			redirect_to '/signin'
+			redirect_to '/sign_in'
 
 		else
 
