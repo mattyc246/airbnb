@@ -5,7 +5,7 @@ class User < ApplicationRecord
    validates :last_name, presence: true
    validates :date_of_birth, presence: true
    validates :email, presence: true
-   validates :password, presence: true
+   validates :password, presence: true, on: :create
    validates :contact_number, presence: true
 
    has_many :authentications, dependent: :destroy
