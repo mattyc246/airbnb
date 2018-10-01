@@ -67,11 +67,56 @@
              <%= form.label :description %><br>
              <%= form.text_area :description, size:"30x3", placeholder: "Tell us about your place...", class:"form-control-sm shadow" %>
             </div>
+
+             <%= form.hidden_field :tags, id:"tags-array" %>
            
-      
-       
+            <div class="d-inline-flex flex-column m-2">
+
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="Non Smoking" id="defaultCheck1">
+                    <label class="form-check-label" for="defaultCheck1">
+                      Non-Smoking
+                    </label>
+                  </div>
+
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="Hair Dryer" id="defaultCheck1">
+                    <label class="form-check-label" for="defaultCheck1">
+                      Hair Dryer
+                    </label>
+                  </div>
+
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="Pets Allowed" id="defaultCheck1">
+                    <label class="form-check-label" for="defaultCheck1">
+                      Pets Allowed
+                    </label>
+                  </div>
+
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="Baby Crib" id="defaultCheck1">
+                    <label class="form-check-label" for="defaultCheck1">
+                      Baby Crib
+                    </label>
+                  </div>
+
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="Minibar" id="defaultCheck1">
+                    <label class="form-check-label" for="defaultCheck1">
+                      Minibar
+                    </label>
+                  </div>
+
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="Swimming Pool" id="defaultCheck1">
+                    <label class="form-check-label" for="defaultCheck1">
+                      Swimming Pool
+                    </label>
+                  </div>
+
+            </div>
      
-            <%= form.file_field :avatars, multiple: true, class:"form-control-file ml-5" %></br>
+            <%= form.file_field :avatars, multiple: true, class:"form-control-file mt-2 ml-5" %></br>
             <%= form.submit "Create Listing", class:"btn btn-primary m-3" %>
       
 
@@ -80,3 +125,25 @@
     </div>
   </div>
 </div>
+
+<script>
+
+      var tag = []
+      $(".form-check-input").click(function(){
+
+            if (tag.includes(this.value)){
+
+               tag.splice( tag.indexOf(this.value), 1 );
+
+            } else {
+
+                  tag.push(this.value);
+
+            }
+
+            console.log(tag)
+
+            $("#tags-array")[0].value = tag;
+      })
+
+</script>

@@ -1,20 +1,27 @@
 <head>
   <%= stylesheet_link_tag 'sessions' %>
 </head>
+<div class="container-fluid w-100 p-3">
+  <div class="d-flex flex-wrap justify-content-center w-50 border border-dark rounded shadow-lg p-3 bg-white my-auto mx-auto">
+    <div class="text-center">
 
-<div id="clearance" class="password-reset">
-  <h2><%= t(".title") %></h2>
+      <div id="clearance" class="password-reset">
+        <h2><%= t(".title") %></h2>
 
-  <p><%= t(".description") %></p>
+        <p><%= t(".description") %></p>
 
-  <%= form_for :password, url: passwords_path do |form| %>
-    <div class="text-field">
-      <%= form.label :email %>
-      <%= form.text_field :email, type: 'email' %>
+        <%= form_for :password, url: passwords_path do |form| %>
+          <div class="text-field">
+            <%= form.label :email %>
+            <%= form.text_field :email, type: 'email', class:"form-control m-3" %>
+          </div>
+
+          <div class="submit-field">
+            <%= form.submit "Reset Password", class:"btn btn-danger" %>
+          </div>
+        <% end %>
+      </div>
+
     </div>
-
-    <div class="submit-field">
-      <%= form.submit %>
-    </div>
-  <% end %>
+  </div>
 </div>

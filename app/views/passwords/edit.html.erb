@@ -2,21 +2,29 @@
   <%= stylesheet_link_tag 'sessions' %>
 </head>
 
-<div id="clearance" class="password-reset">
-  <h2><%= t(".title") %></h2>
+<div class="container-fluid w-100 p-3">
+  <div class="d-flex flex-wrap justify-content-center w-50 border border-dark rounded shadow-lg p-3 bg-white my-auto mx-auto">
+    <div class="text-center">
 
-  <p><%= t(".description") %></p>
+      <div id="clearance" class="password-reset">
+        <h2><%= t(".title") %></h2>
 
-  <%= form_for :password_reset,
-        url: user_password_path(@user, token: @user.confirmation_token),
-        html: { method: :put } do |form| %>
-    <div class="password-field">
-      <%= form.label :password %>
-      <%= form.password_field :password %>
+        <p><%= t(".description") %></p>
+
+        <%= form_for :password_reset,
+              url: user_password_path(@user, token: @user.confirmation_token),
+              html: { method: :put } do |form| %>
+          <div class="password-field">
+            <%= form.label :password %>
+            <%= form.password_field :password %>
+          </div>
+
+          <div class="submit-field">
+            <%= form.submit %>
+          </div>
+        <% end %>
+      </div>
+
     </div>
-
-    <div class="submit-field">
-      <%= form.submit %>
-    </div>
-  <% end %>
+  </div>
 </div>

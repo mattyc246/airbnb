@@ -60,6 +60,7 @@ ActiveRecord::Base.transaction do
     listing['price'] = rand(10..250)
     listing['description'] = Faker::Hipster.sentence
     listing['verified'] = [false, true].sample
+    listing['tags'] = [["Swimming Pool", "Non Smoking"],["Baby Crib","Pets Allowed","Minibar"],["Pets Allowed","Non Smoking"],["Baby Crib","Non Smoking"],["Swimming Pool","Hairdryer"],["Hairdryer","Minibar"],["Swimming Pool","Minibar"]].sample
 
     
     listing['user_id'] = uids.sample

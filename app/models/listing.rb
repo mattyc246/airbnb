@@ -8,6 +8,19 @@ class Listing < ApplicationRecord
   pg_search_scope :search_by_city,
                   :against => :city,
                   :using => {:tsearch => {:prefix => true}}
+  validates :name, presence: true
+  validates :place_type, presence: true
+  validates :property_type, presence: true
+  validates :room_number, presence: true
+  validates :bed_number, presence: true
+  validates :guest_number, presence: true
+  validates :country, presence: true
+  validates :state, presence: true
+  validates :city, presence: true
+  validates :zipcode, presence: true
+  validates :address, presence: true
+  validates :price, presence: true
+  validates :description, presence: true
 
 
   def self.for_update
@@ -43,9 +56,15 @@ class Listing < ApplicationRecord
           }
 	end
 
-     def country_name
+  def add_tags(tags)
+    tags.split(",").each do |tag|
+      self.tags << tag
+    end
+  end
+
+  def country_name
        full_country = ISO3166::Country[country]
        full_country.translations[I18n.locale.to_s] || full_country.name
-     end
+  end
 
 end

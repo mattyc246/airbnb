@@ -20,10 +20,13 @@ class ListingsController < ApplicationController
 	end
 
 	def create
-
-		@listing = Listing.new(listing_params)
+		
+		@listing = Listing.new(listing_params.except(:tags))
+		@listing.add_tags(params[:listing][:tags])
 
 		@listing.user_id = current_user.id
+
+		@listing.verified = false
 
 		if current_user.auth_level == "host" || current_user.auth_level == "superadmin"
 
@@ -147,7 +150,12 @@ class ListingsController < ApplicationController
 
 			@listing = Listing.where(new_hash).page params[:page]
 
+		elsif search_params.include?("tags")
+
+			@listing = Listing.where(":name = ANY(tags)", name: search_params.values[0]).page params[:page]
+
 		else
+			
 
 			@listing = Listing.where(search_params).page params[:page]
 
@@ -187,13 +195,13 @@ class ListingsController < ApplicationController
 
 	def search_params
 
-		params.permit(:verified ,:name, :place_type, :property_type, :room_number, :bed_number, :guest_number, :country, :state, :city, :zipcode, :address, :price, :description, :user_id, :listing, :search)
+		params.permit(:verified ,:name, :place_type, :property_type, :room_number, :bed_number, :guest_number, :country, :state, :city, :zipcode, :address, :price, :description, :user_id, :listing, :search, :tags)
 
 	end
 
 	def listing_params
 
-		params.require(:listing).permit(:name, :place_type, :property_type, :room_number, :bed_number, :guest_number, :country, :state, :city, :zipcode, :address, :price, :description, :user_id, :listing, {avatars: []})
+		params.require(:listing).permit(:name, :place_type, :property_type, :room_number, :bed_number, :guest_number, :country, :state, :city, :zipcode, :address, :price, :description, :tags, :user_id, :listing, {avatars: []})
 
 	end
 end

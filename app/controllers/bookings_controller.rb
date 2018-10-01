@@ -19,7 +19,7 @@ class BookingsController < ApplicationController
 		@booking = Booking.new(booking_params)
 		@listing = Listing.find(booking_params[:listing_id])
 
-		@booking.total_cost = ((booking_params[:check_in]...booking_params[:check_out]).count * @listing.price)
+		@booking.total_cost = ((@booking.check_in...@booking.check_out).count * @listing.price)
 
 
 		if @booking.save
