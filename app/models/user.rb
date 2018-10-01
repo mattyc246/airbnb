@@ -14,10 +14,13 @@ class User < ApplicationRecord
    mount_uploader :avatar, AvatarUploader
 
  def self.create_with_auth_and_hash(authentication, auth_hash)
+  
    user = self.create!(
      first_name: auth_hash["info"]["first_name"],
      last_name: auth_hash["info"]["last_name"],
      email: auth_hash["info"]["email"],
+     contact_number: auth_hash["info"]["phone"],
+     date_of_birth: auth_hash["info"]["birthdate"]
      password: SecureRandom.hex(10)
    )
    user.authentications << authentication
