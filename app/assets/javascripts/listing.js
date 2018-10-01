@@ -32,6 +32,8 @@ $(document).ready(function(){
 
 		var value = this.value
 
+		console.log(this.value)
+
 		var json = {}
 
 		json[attribute] = value
